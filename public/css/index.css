@@ -1,0 +1,9 @@
+.chart {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chart rect {
+  fill: steelblue;
+}

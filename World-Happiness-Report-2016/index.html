@@ -1,0 +1,143 @@
+<!--World Happiness Data 2016 
+Creating a d3 Bar Chart Using World Happiness Data-->
+
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+    <title>World Happiness Report 2016</title>
+    <script src="d3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+  
+    <link rel="icon" 
+      type="image/png" 
+      href="favicon.png">
+ </head>
+ 
+
+ <body>
+ <h1>World Happiness Report 2016 </h1>
+ <h2>Leading experts across fields – economics, psychology, survey analysis, national statistics, health, public policy <br> and more – describe how measurements of well-being can be used effectively to assess the progress of nations. </h2> 
+    <script> 
+      var width=900, height=300;
+      var offsetY=15, roundBand=0.05, theColor="";
+      var clickCount=0, weight=0, multiplier=100; 
+      var textColor="", jsonData="";
+
+      // initial values for the bar chart...
+      var dataValues = [0, 7, 4, 3, 5, 4, 6, 2, 
+                        1, 3, 6, 2, 8, 8, 6, 8, 9,10,4,7,3];
+      
+      var dataCount = dataValues.length;
+
+      var xScale = d3.scale.ordinal()
+              .domain(d3.range(dataValues.length))
+              .rangeRoundBands([0, width], roundBand);
+
+      var yScale = d3.scale.linear()
+              .domain([0, d3.max(dataValues)])
+              .range([0, height]);
+      
+      //Create SVG element
+      var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+      // Create bar elements...
+      svg.selectAll("rect")
+         .data(dataValues)
+         .enter()
+         .append("rect")
+         .attr("x", function(d, i) {
+             return xScale(i);
+         })
+         .attr("y", function(d) {
+             return height - yScale(d);
+         })
+         .attr("width", xScale.rangeBand())
+         .attr("height", function(d) {
+             return yScale(d);
+         })
+         .attr("fill", function(d) {
+          return "rgb(68,210,236)";
+         });
+
+      // Create bar labels...
+      svg.selectAll("text")
+         .data(dataValues)
+         .enter()
+         .attr("x", function(d, i) {
+             return xScale(i) + xScale.rangeBand() / 2;
+         })
+         .attr("y", function(d) {
+             return height - yScale(d) + offsetY;
+         })
+         .attr("font-family", "sans-serif")
+         .attr("font-size", "12px")
+         .attr("fill", textColor);
+
+      // update bar chart with web service values...
+      svg.on("click", function() {
+           ++clickCount;
+
+           // obtain new values...
+           d3.xhr(randomNumbersURL,
+             processHappinessData);
+
+           function processHappinessData(data) {
+             var dataValues = [];
+             
+             var intRegex = /^\d+$/;
+             for (var key in data) {
+                var obj = data[key];
+                if(intRegex.test(obj)) {
+                   dataValues.push(obj); 
+                }
+             }
+          
+           //for(var x=0; x<dataValues.length; x++) {
+           //   console.log("integer: "+dataValues[x]);
+           //}
+           }
+
+           // reset the scaled x and y values...
+           xScale = d3.scale.ordinal()
+              .domain(d3.range(dataValues.length))
+              .rangeRoundBands([0, width], roundBand);
+
+           yScale = d3.scale.linear()
+              .domain([0, d3.max(dataValues)])
+              .range([0, height]);
+      
+           // Update the rectangles...
+           svg.selectAll("rect")
+              .data(dataValues)
+              .attr("y", function(d) {
+                  return height - yScale(d);
+              })
+              .attr("height", function(d) {
+                  return yScale(d);
+              })
+ 
+           // Update the labels...
+           svg.selectAll("text")
+              .data(dataValues)
+              .text(function(d) {
+                //return d;
+                  return Math.floor(d);
+              })
+              .attr("x", function(d, i) {
+                  return xScale(i) + xScale.rangeBand()/2;
+              })
+              .attr("y", function(d) {
+                  return height - yScale(d) + offsetY;
+              });
+         });
+    </script>
+
+    <div class="bubbles"></div>
+    </center>
+  </body>
+</html>
+
