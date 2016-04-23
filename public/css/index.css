@@ -11,7 +11,7 @@
   position: relative;
   width: 220px;
 }
- 
+
 .polaroid img {
   border: 10px solid #fff;
   border-bottom: 45px solid #fff;
@@ -19,7 +19,7 @@
      -moz-box-shadow: 3px 3px 3px #777;
           box-shadow: 3px 3px 3px #777;
 }
- 
+
 .polaroid p {
   position: absolute;
   text-align: center;
@@ -27,4 +27,15 @@
   bottom: 0px;
   font: 400 18px/1 'Kaushan Script', cursive;
   color: #888;
+}
+
+#info-box {
+  background-color: white;
+  border: 1px solid black;
+  bottom: 30px;
+  height: 20px;
+  width: auto;
+  padding: 10px;
+  position: absolute;
+  left: 30px;
 }
