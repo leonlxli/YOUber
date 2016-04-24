@@ -22,11 +22,6 @@
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeAnNaWn4NxU_2lyPMot7FQlMikqHdPuQ
         &libraries=visualization&callback=initMap">
-
-        $.getJSON("sd.json", function(data){
-          geoJsonObject = topojson.feature(data, data.objects.county)
-          map.data.addGeoJson(geoJsonObject);
-        });
     </script>
     <script src="/js/index.js"></script>
 
