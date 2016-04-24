@@ -33,12 +33,39 @@ function initMap() {
         if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
     });
 
-
+    var cityName;
     map.data.loadGeoJson('./map/sdcounty.json');
     map.data.addListener('mouseover', function(event) {
-    document.getElementById('info-box').textContent =
+      document.getElementById('info-box').textContent =
       event.feature.getProperty('NAME');
-});
+    });
+
+
+    // Creates the infoWindow object
+    var infoWindow = new google.maps.InfoWindow({
+      
+    });
+
+    map.data.addListener('click', function(event) {
+      cityName = event.feature.getProperty('NAME');
+      var html = "<p>" + cityName + "</p>";
+      infoWindow.setContent(html);
+    })
+
+    // Opens infoWindow on click
+    map.data.addListener("click", function(event) {
+      var latlng = event.latLng;
+      //console.log(latlng);
+      infoWindow.setPosition(latlng);
+      infoWindow.open(map);
+
+    });
+
+    // Closes window when mouseOut
+    map.data.addListener("mouseout", function() {
+      infoWindow.close();
+    });
+
 
 
 }
