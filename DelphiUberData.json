@@ -1,0 +1,371 @@
+{
+    "Alpine": {
+        "Median income": "$91041.00",
+        "population": 15226,
+        "Family Households With Children": 1508,
+        "Hispanic Population": 2477,
+        "Families without vehicles": 280,
+        "Families with only 1 vehicle": 1261,
+        "Number of people working in this region": 6840
+    },
+    "Anza Borrego": {
+        "Median income": "$49948.00",
+        "Family Households With Children": 248,
+        "Families without vehicles": 111,
+        "Families with only 1 vehicle": 498,
+        "Number of people working in this region": 1299,
+        "population": 4952,
+        "Hispanic Population": 1927
+    },
+    "Carlsbad": {
+        "Median income": "$89108.00",
+        "population": 117427,
+        "Family Households With Children": 12812,
+        "Hispanic Population": 17794,
+        "Families without vehicles": 1507,
+        "Families with only 1 vehicle": 13458,
+        "Number of people working in this region": 52169
+    },
+    "Central San Diego": {
+        "Median income": "$52607.00",
+        "population": 166820,
+        "Family Households With Children": 10549,
+        "Hispanic Population": 60001,
+        "Families without vehicles": 10967,
+        "Families with only 1 vehicle": 36355,
+        "Number of people working in this region": 85005
+    },
+    "Chula Vista": {
+        "Median income": "$47821.00",
+        "population": 116603,
+        "Family Households With Children": 13008,
+        "Hispanic Population": 83820,
+        "Families without vehicles": 3402,
+        "Families with only 1 vehicle": 14909,
+        "Number of people working in this region": 45981
+    },
+    "Coastal": {
+        "Median income": "$85455.00",
+        "population": 75893,
+        "Family Households With Children": 4624,
+        "Hispanic Population": 8482,
+        "Families without vehicles": 1839,
+        "Families with only 1 vehicle": 13757,
+        "Number of people working in this region": 41707
+    },
+    "Coronado": {
+        "Median income": "$99889.00",
+        "population": 23187,
+        "Family Households With Children": 2350,
+        "Hispanic Population": 3328,
+        "Families without vehicles": 372,
+        "Families with only 1 vehicle": 3340,
+        "Number of people working in this region": 7605
+    },
+    "Del Mar Mira Mesa": {
+        "Median income": "$115528.00",
+        "population": 160089,
+        "Family Households With Children": 20816,
+        "Hispanic Population": 16518,
+        "Families without vehicles": 1291,
+        "Families with only 1 vehicle": 13652,
+        "Number of people working in this region": 82318
+    },
+    "El Cajon": {
+        "Median income": "$55429.00",
+        "population": 126047,
+        "Family Households With Children": 14579,
+        "Hispanic Population": 34897,
+        "Families without vehicles": 3544,
+        "Families with only 1 vehicle": 15025,
+        "Number of people working in this region": 52410
+    },
+    "Elliott Navajo": {
+        "Median income": "$83438.00",
+        "population": 90258,
+        "Family Households With Children": 10413,
+        "Hispanic Population": 13537,
+        "Families without vehicles": 1216,
+        "Families with only 1 vehicle": 10459,
+        "Number of people working in this region": 42072
+    },
+    "Escondido": {
+        "Median income": "$61751.00",
+        "population": 165438,
+        "Family Households With Children": 18142,
+        "Hispanic Population": 77496,
+        "Families without vehicles": 3138,
+        "Families with only 1 vehicle": 14122,
+        "Number of people working in this region": 71319
+    },
+    "Fallbrook": {
+        "Median income": "$72011.00",
+        "population": 48167,
+        "Family Households With Children": 4715,
+        "Hispanic Population": 18351,
+        "Families without vehicles": 1029,
+        "Families with only 1 vehicle": 3812,
+        "Number of people working in this region": 19836
+    },
+    "Harbison Crest": {
+        "Median income": "$83290.00",
+        "population": 14869,
+        "Family Households With Children": 1273,
+        "Hispanic Population": 2366,
+        "Families without vehicles": 128,
+        "Families with only 1 vehicle": 1338,
+        "Number of people working in this region": 7621
+    },
+    "Jamul": {
+        "Median income": "$121168.00",
+        "population": 18079,
+        "Family Households With Children": 1780,
+        "Hispanic Population": 5782,
+        "Families without vehicles": 64,
+        "Families with only 1 vehicle": 558,
+        "Number of people working in this region": 6838
+    },
+    "Kearny Mesa": {
+        "Median income": "$68676.00",
+        "population": 152441,
+        "Family Households With Children": 13428,
+        "Hispanic Population": 34846,
+        "Families without vehicles": 2796,
+        "Families with only 1 vehicle": 22455,
+        "Number of people working in this region": 77612
+    },
+    "La Mesa": {
+        "Median income": "$60838.00",
+        "population": 60320,
+        "Family Households With Children": 5947,
+        "Hispanic Population": 12755,
+        "Families without vehicles": 1955,
+        "Families with only 1 vehicle": 8729,
+        "Number of people working in this region": 29284
+    },
+    "Laguna Pine Valley": {
+        "Median income": "$69316.00",
+        "population": 5655,
+        "Family Households With Children": 392,
+        "Hispanic Population": 987,
+        "Families without vehicles": 13,
+        "Families with only 1 vehicle": 650,
+        "Number of people working in this region": 1904
+    },
+    "Lakeside": {
+        "Median income": "$71155.00",
+        "population": 56951,
+        "Family Households With Children": 6806,
+        "Hispanic Population": 10989,
+        "Families without vehicles": 782,
+        "Families with only 1 vehicle": 4874,
+        "Number of people working in this region": 25237
+    },
+    "Lemon Grove": {
+        "Median income": "$60434.00",
+        "population": 30110,
+        "Family Households With Children": 3291,
+        "Hispanic Population": 13137,
+        "Families without vehicles": 566,
+        "Families with only 1 vehicle": 2744,
+        "Number of people working in this region": 12757
+    },
+    "Mid City": {
+        "Median income": "$45873.00",
+        "population": 164903,
+        "Family Households With Children": 17687,
+        "Hispanic Population": 71270,
+        "Families without vehicles": 6740,
+        "Families with only 1 vehicle": 23224,
+        "Number of people working in this region": 70704
+    },
+    "Miramar": {
+        "Median income": "$45498.00",
+        "population": 5072,
+        "Family Households With Children": 426,
+        "Hispanic Population": 1042,
+        "Families without vehicles": 5,
+        "Families with only 1 vehicle": 243,
+        "Number of people working in this region": 368
+    },
+    "Mountain Empire": {
+        "Median income": "$59014.00",
+        "population": 8563,
+        "Family Households With Children": 628,
+        "Hispanic Population": 3226,
+        "Families without vehicles": 27,
+        "Families with only 1 vehicle": 365,
+        "Number of people working in this region": 2301
+    },
+    "North San Diego": {
+        "Median income": "$104474.00",
+        "population": 110927,
+        "Family Households With Children": 14797,
+        "Hispanic Population": 11518,
+        "Families without vehicles": 1371,
+        "Families with only 1 vehicle": 11290,
+        "Number of people working in this region": 51631
+    },
+    "National City": {
+        "Median income": "$41936.00",
+        "population": 58752,
+        "Family Households With Children": 5952,
+        "Hispanic Population": 38066,
+        "Families without vehicles": 2129,
+        "Families with only 1 vehicle": 5201,
+        "Number of people working in this region": 22074
+    },
+    "Oceanside": {
+        "Median income": "$70503.00",
+        "population": 161223,
+        "Family Households With Children": 17247,
+        "Hispanic Population": 62054,
+        "Families without vehicles": 2723,
+        "Families with only 1 vehicle": 16997,
+        "Number of people working in this region": 71510
+    },
+    "Palomar Julian": {
+        "Median income": "$57946.00",
+        "population": 6529,
+        "Family Households With Children": 526,
+        "Hispanic Population": 1048,
+        "Families without vehicles": 83,
+        "Families with only 1 vehicle": 642,
+        "Number of people working in this region": 2091
+    },
+    "Pauma": {
+        "Median income": "$83094.00",
+        "population": 7798,
+        "Family Households With Children": 853,
+        "Hispanic Population": 3020,
+        "Families without vehicles": 55,
+        "Families with only 1 vehicle": 411,
+        "Number of people working in this region": 3008
+    },
+    "Pendleton": {
+        "Median income": "$52692.00",
+        "population": 38172,
+        "Family Households With Children": 5179,
+        "Hispanic Population": 8170,
+        "Families without vehicles": 26,
+        "Families with only 1 vehicle": 2309,
+        "Number of people working in this region": 3034
+    },
+    "Peninsula": {
+        "Median income": "$71475.00",
+        "population": 63252,
+        "Family Households With Children": 4954,
+        "Hispanic Population": 8649,
+        "Families without vehicles": 1690,
+        "Families with only 1 vehicle": 10018,
+        "Number of people working in this region": 30186
+    },
+    "Poway": {
+        "Median income": "$117506.00",
+        "population": 87385,
+        "Family Households With Children": 11770,
+        "Hispanic Population": 10941,
+        "Families without vehicles": 885,
+        "Families with only 1 vehicle": 6198,
+        "Number of people working in this region": 43378
+    },
+    "Ramona": {
+        "Median income": "$88991.00",
+        "population": 35635,
+        "Family Households With Children": 4076,
+        "Hispanic Population": 8785,
+        "Families without vehicles": 324,
+        "Families with only 1 vehicle": 2589,
+        "Number of people working in this region": 15982
+    },
+    "San Dieguito": {
+        "Median income": "$103305.00",
+        "population": 95500,
+        "Family Households With Children": 10960,
+        "Hispanic Population": 13417,
+        "Families without vehicles": 1221,
+        "Families with only 1 vehicle": 9744,
+        "Number of people working in this region": 43609
+    },
+    "San Marcos": {
+        "Median income": "$65489.00",
+        "population": 91465,
+        "Family Households With Children": 10469,
+        "Hispanic Population": 34379,
+        "Families without vehicles": 1561,
+        "Families with only 1 vehicle": 9177,
+        "Number of people working in this region": 36350
+    },
+    "Santee": {
+        "Median income": "$78300.00",
+        "population": 51950,
+        "Family Households With Children": 6096,
+        "Hispanic Population": 8646,
+        "Families without vehicles": 635,
+        "Families with only 1 vehicle": 4933,
+        "Number of people working in this region": 23899
+    },
+    "South Bay": {
+        "Median income": "$54417.00",
+        "population": 135592,
+        "Family Households With Children": 14785,
+        "Hispanic Population": 94425,
+        "Families without vehicles": 2890,
+        "Families with only 1 vehicle": 11377,
+        "Number of people working in this region": 53213
+    },
+    "Southeastern San Diego": {
+        "Median income": "$56626.00",
+        "Family Households With Children": 17540,
+        "Families without vehicles": 2818,
+        "Families with only 1 vehicle": 12014,
+        "Number of people working in this region": 61988,
+        "population": 157033,
+        "Hispanic Population": 81088
+    },
+    "Spring Valley": {
+        "Median income": "$74965.00",
+        "population": 82215,
+        "Family Households With Children": 9822,
+        "Hispanic Population": 27450,
+        "Families without vehicles": 1666,
+        "Families with only 1 vehicle": 7295,
+        "Number of people working in this region": 37667
+    },
+    "Sweetwater": {
+        "Median income": "$94927.00",
+        "population": 139210,
+        "Family Households With Children": 18641,
+        "Hispanic Population": 66351,
+        "Families without vehicles": 696,
+        "Families with only 1 vehicle": 8497,
+        "Number of people working in this region": 60962
+    },
+    "University": {
+        "Median income": "$73746.00",
+        "population": 68088,
+        "Family Households With Children": 4165,
+        "Hispanic Population": 7088,
+        "Families without vehicles": 1462,
+        "Families with only 1 vehicle": 10581,
+        "Number of people working in this region": 31039
+    },
+    "Valley Center": {
+        "Median income": "$85004.00",
+        "population": 23553,
+        "Family Households With Children": 2319,
+        "Hispanic Population": 6216,
+        "Families without vehicles": 197,
+        "Families with only 1 vehicle": 1787,
+        "Number of people working in this region": 9836
+    },
+    "Vista": {
+        "Median income": "$61044.00",
+        "population": 102080,
+        "Family Households With Children": 10371,
+        "Hispanic Population": 48887,
+        "Families without vehicles": 1287,
+        "Families with only 1 vehicle": 9450,
+        "Number of people working in this region": 42181
+    }
+}
