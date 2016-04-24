@@ -8,6 +8,8 @@ var session = require('express-session');
 var dotenv = require('dotenv');
 var pg = require('pg');
 var app = express();
+var jsonfile = require('jsonfile');
+
 
 //client id and client secret here, taken from .env (which you need to create)
 dotenv.load();
@@ -47,6 +49,10 @@ app.set('port', process.env.PORT || 3000);
 //routes
 app.get('/', function(req, res) {
     res.render('index');
+});
+
+app.get('/getUberData', function(req, res) {
+  console.log(jsondata);
 });
 
 app.get('/uberData', function(req, res) {
@@ -138,6 +144,10 @@ app.get('/uberData', function(req, res) {
             }
         }
         result = rename(data);
+        var file = '/DelphiUberData.json'
+        jsonfile.writeFile(file, result, function(err) {
+            console.error(err)
+        })
         res.json(result);
     });
 })
@@ -151,9 +161,9 @@ function rename(data) {
         data['Southeastern San Diego'][attrname] = data['Southeast San Diego'][attrname];
     }
 
-    var toDelete = ['Southeast San Diego', 'Anza Borrego Springs', 'San Diego County', 'North Coastal Region', 'North Central Region', 'Central Region', 'South Region', 'East Region', 'North Inland Region', 'County Total', 'Harbison Crest El Cajon combo','Harbison Crest El Cajon'];
-    for (var i=0; i<toDelete.length;i++){
-      delete data[toDelete[i]];
+    var toDelete = ['Southeast San Diego', 'Anza Borrego Springs', 'San Diego County', 'North Coastal Region', 'North Central Region', 'Central Region', 'South Region', 'East Region', 'North Inland Region', 'County Total', 'Harbison Crest El Cajon combo', 'Harbison Crest El Cajon'];
+    for (var i = 0; i < toDelete.length; i++) {
+        delete data[toDelete[i]];
     }
     return data
 }
