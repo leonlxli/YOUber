@@ -39,3 +39,7 @@
   position: absolute;
   left: 30px;
 }
+
+#map {
+    height: 500px;
+}
