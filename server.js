@@ -49,12 +49,12 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
-data = {};
-
 app.get('/uberData', function(req, res) {
+    data = {};
+
     client.query('SELECT hhsa_san_diego_demographics_median_income_2012."Area", hhsa_san_diego_demographics_median_income_2012."Median Household Income" FROM cogs121_16_raw.hhsa_san_diego_demographics_median_income_2012', function(err, dat) {
         for (var i = 0; i < dat.rows.length; i++) {
-            var area = dat.rows[i]['Area'].trim();
+            var area = dat.rows[i]['Area'].trim().replace("SD", "San Diego");
             area = area.split('-').join(' ');
             data[area] = {
                 "Median income": dat.rows[i]['Median Household Income']
@@ -66,11 +66,11 @@ app.get('/uberData', function(req, res) {
 
     client.query('SELECT hhsa_san_diego_demographics_county_population_2012."Area", hhsa_san_diego_demographics_county_population_2012."Total 2012 Population" FROM cogs121_16_raw.hhsa_san_diego_demographics_county_population_2012;', function(err, dat) {
         for (var i = 0; i < dat.rows.length; i++) {
-            var area = dat.rows[i]['Area'].trim();
+            var area = dat.rows[i]['Area'].trim().replace("SD", "San Diego");
             area = area.split('-').join(' ');
 
             if (data[area]) {
-                data[area].population = dat.rows[i]['Total 2012 Population']
+                data[area]['population'] = dat.rows[i]['Total 2012 Population']
             } else {
                 data[area] = {
                     'population': dat.rows[i]['Total 2012 Population']
@@ -83,7 +83,7 @@ app.get('/uberData', function(req, res) {
 
     client.query('SELECT hhsa_san_diego_demographics_household_composition_2012."Subregional Area", hhsa_san_diego_demographics_household_composition_2012."Family households -with children age<18" FROM cogs121_16_raw.hhsa_san_diego_demographics_household_composition_2012;', function(err, dat) {
         for (var i = 0; i < dat.rows.length; i++) {
-            var area = dat.rows[i]['Subregional Area'].trim();
+            var area = dat.rows[i]['Subregional Area'].trim().replace("SD", "San Diego");
             area = area.split('-').join(' ');
             if (data[area]) {
                 data[area]['Family Households With Children'] = dat.rows[i]['Family households -with children age<18']
@@ -98,7 +98,7 @@ app.get('/uberData', function(req, res) {
 
     client.query('SELECT hhsa_san_diego_demographics_county_popul_by_race_2012_norm."Area", hhsa_san_diego_demographics_county_popul_by_race_2012_norm."Population" FROM cogs121_16_raw.hhsa_san_diego_demographics_county_popul_by_race_2012_norm WHERE hhsa_san_diego_demographics_county_popul_by_race_2012_norm."Race" = \'Hispanic\';', function(err, dat) {
         for (var i = 0; i < dat.rows.length; i++) {
-            var area = dat.rows[i]['Area'].trim();
+            var area = dat.rows[i]['Area'].trim().replace("SD", "San Diego");
             area = area.split('-').join(' ');
             if (data[area]) {
                 data[area]['Hispanic Population'] = dat.rows[i]['Population']
@@ -112,7 +112,7 @@ app.get('/uberData', function(req, res) {
     });
     client.query('SELECT hhsa_san_diego_demographics_vehicle_availability_2012."Area", hhsa_san_diego_demographics_vehicle_availability_2012."no vehicle available", hhsa_san_diego_demographics_vehicle_availability_2012."1 vehicle available" FROM cogs121_16_raw.hhsa_san_diego_demographics_vehicle_availability_2012;', function(err, dat) {
         for (var i = 0; i < dat.rows.length; i++) {
-            var area = dat.rows[i]['Area'].trim();
+            var area = dat.rows[i]['Area'].trim().replace("SD", "San Diego");
             area = area.split('-').join(' ');
             if (data[area]) {
                 data[area]['Families without vehicles'] = dat.rows[i]['no vehicle available'];
@@ -120,15 +120,43 @@ app.get('/uberData', function(req, res) {
             } else {
                 data[area] = {
                     'Families without vehicles': dat.rows[i]['no vehicle available'],
-                    'Families with only 1 vehicles': dat.rows[i]['1 vehicle available']
+                    'Families with only 1 vehicle': dat.rows[i]['1 vehicle available']
                 }
             }
         }
-        // console.log("Done loading vehicle data")
-        console.log(data);
-        res.json(data);
+    });
+    client.query('SELECT hhsa_san_diego_demographics_occupational_industry_2012."Area", hhsa_san_diego_demographics_occupational_industry_2012."Occupation - total all occupations" FROM cogs121_16_raw.hhsa_san_diego_demographics_occupational_industry_2012;', function(err, dat) {
+        for (var i = 0; i < dat.rows.length; i++) {
+            var area = dat.rows[i]['Area'].trim().replace("SD", "San Diego");
+            area = area.split('-').join(' ');
+            if (data[area]) {
+                data[area]['Number of people working in this region'] = dat.rows[i]['Occupation - total all occupations']
+            } else {
+                data[area] = {
+                    'Number of people working in this region': dat.rows[i]['Occupation - total all occupations']
+                }
+            }
+        }
+        result = rename(data);
+        res.json(result);
     });
 })
+
+function rename(data) {
+    for (var attrname in data['Anza Borrego Springs']) {
+        data['Anza Borrego'][attrname] = data['Anza Borrego Springs'][attrname];
+    }
+
+    for (var attrname in data['Southeast San Diego']) {
+        data['Southeastern San Diego'][attrname] = data['Southeast San Diego'][attrname];
+    }
+
+    var toDelete = ['Southeast San Diego', 'Anza Borrego Springs', 'San Diego County', 'North Coastal Region', 'North Central Region', 'Central Region', 'South Region', 'East Region', 'North Inland Region', 'County Total', 'Harbison Crest El Cajon combo','Harbison Crest El Cajon'];
+    for (var i=0; i<toDelete.length;i++){
+      delete data[toDelete[i]];
+    }
+    return data
+}
 
 
 
