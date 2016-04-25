@@ -1,6 +1,6 @@
 var map;
 
-function initMap() {
+window.initMap = function(){
 
     var minZoomLevel = 9;
 
@@ -43,7 +43,7 @@ function initMap() {
 
     // Creates the infoWindow object
     var infoWindow = new google.maps.InfoWindow({
-      
+
     });
 
     map.data.addListener('click', function(event) {
