@@ -1,69 +1,85 @@
 var uberXrank = {
-    'population weight': 0.8,
+    'population weight': 0.7,
     'hispanic weight': 0,
     'income weight': 0.5,
-    'no vehicle weight': 0.8,
-    'one vehicle weight': 0.8,
+    'no vehicle weight': 0.5,
+    'one vehicle weight': 0.3,
     'family weight': 0.5,
     'workers weight': 0.5
 }
 
 var uberEsponalRank = {
-    'population weight': 0.8,
+    'population weight': 0.7,
     'hispanic weight': 1,
     'income weight': 0.5,
-    'no vehicle weight': 0.8,
-    'one vehicle weight': 0.8,
+    'no vehicle weight': 0.5,
+    'one vehicle weight': 0.3,
     'family weight': 0.5,
     'workers weight': 0.5
 }
 
 var uberSelectRank = {
-    'population weight': 0.4,
+    'population weight': 0.5,
     'hispanic weight': 0,
-    'income weight': 0.7,
-    'no vehicle weight': 0.8,
-    'one vehicle weight': 0.5,
+    'income weight': 0.8,
+    'no vehicle weight': 0.3,
+    'one vehicle weight': 0.1,
     'family weight': 0.3,
-    'workers weight': 0.5
+    'workers weight': .8
 }
 
 var blackRank = {
-    'population weight': 0.3,
+    'population weight': 0.4,
     'hispanic weight': 0,
     'income weight': 1,
     'no vehicle weight': 0.8,
     'one vehicle weight': 0.4,
     'family weight': 0.2,
-    'workers weight': 0.5
+    'workers weight': .8
 }
 
 var UBER_SUVRank = {
-    'population weight': 1,
+    'population weight': 0.5,
     'hispanic weight': 0,
-    'income weight': 0.7,
+    'income weight': 0.9,
     'no vehicle weight': 0.8,
-    'one vehicle weight': 0.6,
-    'family weight': 1,
-    'workers weight': 0.4
+    'one vehicle weight': 0.1,
+    'family weight': .8,
+    'workers weight': 0.6
 }
 
+var UBERXLRank = {
+    'population weight': 0.5,
+    'hispanic weight': 0,
+    'income weight': 0.5,
+    'no vehicle weight': 1,
+    'one vehicle weight': 0.7,
+    'family weight': .8,
+    'workers weight': 0.8
+}
 
 
 exports.getData = function(req, res) {
     var data = require('../DelphiUberData.json');
     console.log(req.query);
     var uberRank;
+    if(!req.query.uber){
+    	res.json({
+            'err': 'Need to provide an Uber. Options are UberX, Uber Esponal, Uber Select, Uber Black, Uber SUV'
+        })
+    }
     if (req.query.uber == 'UberX') {
         uberRank = uberXrank;
     } else if (req.query.uber == 'Uber Esponal') {
-        uberRank = uberXrank;
+        uberRank = uberEsponalRank;
     } else if (req.query.uber == 'Uber Select') {
-        uberRank = uberXrank;
+        uberRank = uberSelectRank;
     } else if (req.query.uber == 'Uber Black') {
-        uberRank = uberXrank;
+        uberRank = blackRank;
     } else if (req.query.uber == 'Uber SUV') {
-        uberRank = uberXrank;
+        uberRank = UBER_SUVRank;
+    } else if (req.query.uber == 'UberXL') {
+        uberRank = UBERXLRank;
     } else {
         res.json({
             'err': 'cannot find the Uber you are looking for, options are UberX, Uber Esponal, Uber Select, Uber Black, Uber SUV'
@@ -88,7 +104,10 @@ exports.getData = function(req, res) {
     datalist.sort(function(a, b) {
     		return a['power']-b['power'];
         })
+    for(var i = 0; i<datalist.length;i++){
+    	datalist[i]['rank'] = i+1;
+    }
     var result = {'Sorted Data': datalist};
-    // console.log(result)
+    console.log(result)
     res.json(result);
 }
