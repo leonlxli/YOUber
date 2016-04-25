@@ -2,18 +2,7 @@
 <html>
 
 <head>
-    <style type="text/css">
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
 
-    #map {
-        height: 100%;
-    }
-    </style>
 </head>
 
 <body>
@@ -23,11 +12,9 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeAnNaWn4NxU_2lyPMot7FQlMikqHdPuQ
         &libraries=visualization&callback=initMap">
 
-        $.getJSON("sd.json", function(data){
-          geoJsonObject = topojson.feature(data, data.objects.county)
-          map.data.addGeoJson(geoJsonObject);
-        });
+
     </script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
     <script src="/js/index.js"></script>
 
 
