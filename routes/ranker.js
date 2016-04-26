@@ -65,12 +65,12 @@ exports.getData = function(req, res) {
     var uberRank;
     if(!req.query.uber){
     	res.json({
-            'err': 'Need to provide an Uber. Options are UberX, Uber Esponal, Uber Select, Uber Black, Uber SUV'
+            'err': 'Need to provide an Uber. Options are UberX, Uber Espanol, Uber Select, Uber Black, Uber SUV'
         })
     }
     if (req.query.uber == 'UberX') {
         uberRank = uberXrank;
-    } else if (req.query.uber == 'Uber Esponal') {
+    } else if (req.query.uber == 'Uber Espanol') {
         uberRank = uberEsponalRank;
     } else if (req.query.uber == 'Uber Select') {
         uberRank = uberSelectRank;
