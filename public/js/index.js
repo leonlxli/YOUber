@@ -8,6 +8,7 @@ d3.json("/getRankedData?uber=UberX", function(err, dat) {
     // console.log(dat);
 });
 
+$('#d3').hide();
 //var data = [4, 8, 15, 16, 23, 42];
 // Function to create the bar graph
 function buildGraph(myData) {
