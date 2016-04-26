@@ -160,23 +160,23 @@ window.initMap = function() {
     });
 
 
-    // Bounds for North America
-    var strictBounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng(32.7297, -117.0451),
-        new google.maps.LatLng(33.2157, -117.0300));
-
-    // Listen for the dragend event
-    var lastValidCenter = map.getCenter();
-    google.maps.event.addListener(map, 'center_changed', function() {
-        if (strictBounds.contains(map.getCenter())) {
-            // still within valid bounds, so save the last valid position
-            lastValidCenter = map.getCenter();
-            return;
-        }
-
-        // not valid anymore => return to last valid position
-        map.panTo(lastValidCenter);
-    });
+    // // Bounds for North America
+    // var strictBounds = new google.maps.LatLngBounds(
+    //     new google.maps.LatLng(32.7297, -117.0451),
+    //     new google.maps.LatLng(33.2157, -117.0300));
+    //
+    // // Listen for the dragend event
+    // var lastValidCenter = map.getCenter();
+    // google.maps.event.addListener(map, 'center_changed', function() {
+    //     if (strictBounds.contains(map.getCenter())) {
+    //         // still within valid bounds, so save the last valid position
+    //         lastValidCenter = map.getCenter();
+    //         return;
+    //     }
+    //
+    //     // not valid anymore => return to last valid position
+    //     map.panTo(lastValidCenter);
+    // });
 
     // Limit the zoom level
     google.maps.event.addListener(map, 'zoom_changed', function() {
