@@ -165,6 +165,7 @@ window.initMap = function() {
 
     });
 
+
     map.data.addListener('click', function(event) {
         cityName = event.feature.getProperty('NAME');
         for (i = 0; i < allData.length; i++) {
