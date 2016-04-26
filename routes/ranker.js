@@ -107,7 +107,7 @@ exports.getData = function(req, res) {
     for(var i = 0; i<datalist.length;i++){
     	datalist[i]['rank'] = i+1;
     }
-    var result = {'Sorted Data': datalist};
+    var result = {'SortedData': datalist};
     console.log(result)
     res.json(result);
 }
