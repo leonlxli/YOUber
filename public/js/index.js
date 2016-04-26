@@ -11,6 +11,8 @@ d3.json("/getRankedData?uber=UberX", function(err, dat) {
 //var data = [4, 8, 15, 16, 23, 42];
 // Function to create the bar graph
 function buildGraph(myData) {
+    d3.selectAll("svg > *").remove();
+
     var obj = allData[i].data['scaled data']; // gets all the scaled data json
     var arr = Object.keys(obj).map(function(k) {
         return obj[k]
@@ -95,7 +97,7 @@ function buildGraph(myData) {
 
     for (var key in myData.data['scaled data']) {
         mapper.push({
-            'name': key.replace(' scaled',''),
+            'name': key.replace(' scaled', ''),
             'value': myData.data['scaled data'][key]
         });
     }
@@ -175,8 +177,7 @@ function buildGraph(myData) {
     //    .attr("font-size", "11px")
     //    .attr("fill", "white");
 
-    console.log(bars);
-    return bars;
+    return chart;
 
 }
 
@@ -198,6 +199,7 @@ window.initMap = function() {
         new google.maps.LatLng(33.2157, -117.0300));
 
     // Listen for the dragend event
+    var lastValidCenter = map.getCenter();
     google.maps.event.addListener(map, 'center_changed', function() {
         if (strictBounds.contains(map.getCenter())) {
             // still within valid bounds, so save the last valid position
@@ -221,25 +223,27 @@ window.initMap = function() {
             event.feature.getProperty('NAME');
     });
 
-
-    // Creates the infoWindow object
     var infoWindow = new google.maps.InfoWindow({
 
     });
+    // Creates the infoWindow object
 
     map.data.addListener('click', function(event) {
+        infoWindow = new google.maps.InfoWindow({
+
+        });
         cityName = event.feature.getProperty('NAME');
         for (i = 0; i < allData.length; i++) {
             if (cityName.toUpperCase() == allData[i].Area.toUpperCase()) {
                 // Render Data for bar graphs
-                console.log(allData[i].data['scaled data']);
+                // console.log(allData[i].data['scaled data']);
                 var bars = buildGraph(allData[i], infoWindow);
 
             }
         }
         var html = "<p>" + cityName + "</p>";
         var d3 = $('#d3').html();
-        console.log(d3);
+        // console.log(d3);
         infoWindow.setContent(d3);
         //buildGraph(html, infoWindow);
     })
