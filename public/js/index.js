@@ -107,7 +107,12 @@ function buildGraph(myData) {
     chart
         .append("g").attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+     .attr("dx", "-.8em")
+     .attr("dy", ".15em")
+     .attr("transform", "rotate(-18)");;
 
 
     chart.append("g")
@@ -207,7 +212,7 @@ window.initMap = function() {
         var html = "<p>" + cityName + "</p>";
         var d3 = $('#d3').html();
         // console.log(d3);
-        infoWindow.setContent(d3);
+        infoWindow.setContent(html + d3);
         //buildGraph(html, infoWindow);
     })
 
