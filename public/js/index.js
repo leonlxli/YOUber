@@ -16,9 +16,6 @@ function buildGraph(myData) {
         return obj[k]
     }); // converts the values to an array
     var key = Object.keys(obj); // gets the key of json
-    // console.log(obj);
-    // console.log('ARRRRRR ' + arr);
-    // console.log('KEYYYYY ' + key);
 
     var scale = {
         //x: d3.scale.ordinal(),
@@ -32,8 +29,6 @@ function buildGraph(myData) {
         },
         width = 600 - margin.left - margin.right,
         height = 300 - margin.top - margin.bottom;
-    // var totalWidth = 500;
-    // var totalHeight = 200;
 
     function mergeArray(keyArray, valueArray) {
         var result = [];
@@ -47,11 +42,6 @@ function buildGraph(myData) {
 
     var dataset = mergeArray(key, arr);
 
-
-
-    // scale.x.domain([0,6]);
-    // scale.x.range([0, totalWidth]);
-
     scale.y.domain([0, 10]);
     scale.y.range([height, 0]);
 
@@ -62,24 +52,9 @@ function buildGraph(myData) {
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    // .attr({
-    //   'width': width,
-    //   'height': height
-    // });
-
-
 
     var xScale = d3.scale.ordinal().rangeRoundBands([0, width], .1);
     var yScale = d3.scale.linear().range([height, 0]);
-
-    // var xScale = d3.scale.linear()
-    //                 .domain([0, d3.max(dataset, function(d) {
-    //                   // console.log(d[0]);
-    //                   return d[0];})])
-    //                 .range([0,totalWidth]);
-    // var yScale = d3.scale.linear()
-    //                 .domain([0, d3.max(dataset, function(d) {return d[1]; })])
-    //                 .range([0, totalHeight]);
 
     var xAxis = d3.svg.axis()
         .scale(xScale)
@@ -123,19 +98,6 @@ function buildGraph(myData) {
             return height - yScale(d.value);
         });
 
-    // chart.append("text")
-    //     .attr("class", "x label")
-    //     .attr("text-anchor", "end")
-    //     .attr("x", width)
-    //     .attr("y", height - 6)
-    //     .text(key[0]);
-    // chart.append("text")
-    //     .attr("class", "x label")
-    //     .attr("text-anchor", "end")
-    //     .attr("x", width)
-    //     .attr("y", height - 19)
-    //     .text(key[1]);
-
     var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
     var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
@@ -154,30 +116,6 @@ function buildGraph(myData) {
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .text("Frequency");
-
-
-
-    // chart.selectAll("text")
-    //    .data(obj, 12)
-    //    .enter()
-    //    .append("text")
-    //    .text(function(d) {
-    //    return d.value;
-    //    })
-    //    .attr("text-anchor", "middle")
-    //    .attr("x", function(d, i) {
-    //    return xScale(i) + xScale.rangeBand() / 2;
-    //    })
-    //    .attr("y", function(d) {
-    //    return h - yScale(d.value) + 14;
-    //    })
-    //    .attr("font-family", "sans-serif")
-    //    .attr("font-size", "11px")
-    //    .attr("fill", "white");
-
-    console.log(bars);
-    return bars;
-
 }
 
 
