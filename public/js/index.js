@@ -198,7 +198,7 @@ window.initMap = function() {
 
     map.data.addListener('click', function(event) {
         infoWindow = new google.maps.InfoWindow({
-
+            
         });
         cityName = event.feature.getProperty('NAME');
         for (i = 0; i < allData.length; i++) {
@@ -222,6 +222,7 @@ window.initMap = function() {
         //console.log(latlng);
         infoWindow.setPosition(latlng);
         infoWindow.open(map);
+        map.setCenter(infoWindow.getPosition());
 
     });
 
