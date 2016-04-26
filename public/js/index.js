@@ -157,6 +157,7 @@ window.initMap = function() {
         zoom: minZoomLevel,
         center: new google.maps.LatLng(32.8787, -117.0400),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
+        streetViewControl: false
     });
 
 
