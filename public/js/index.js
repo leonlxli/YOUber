@@ -41,13 +41,18 @@ function selectUber(uber) {
   $('#uberTypeSelected h3').text("for " + uber + ":");
 
   $('#rankings').children('button').remove();
+  $('#rankings').children('div').remove();
   d3.json('/getRankedData?uber=' + uber, function(err, dat) {
     allData = dat.SortedData;
     allData.sort(function(a, b) { return b.rank - a.rank; });
+    console.log(allData);
     for (var i = 0; i < 10; i++) {
 
       // TODO: make it a clickable link that triggers onclick event to pop up d3 graph, as if you clicking on map.
-      $('#rankings').append('<button class="ranking list-group-item" onclick="doShit()">' + allData[i].Area + '</button>');
+      $('#rankings').append(
+        '<button class="ranking list-group-item" onclick="displayRaw(\'' + allData[i].Area + '\')">' +  (i + 1) + '. ' + allData[i].Area + '</button>' +
+        '<div class="raw container" id="rawData' + i + '"></div>'
+      );
 
     }
 
@@ -59,6 +64,28 @@ function selectUber(uber) {
       });
     }
   });
+}
+
+function displayRaw(area) {
+  $('.raw').children('p').remove();
+  $('.raw').children('br').remove();
+
+  for (var i = 0; i < 10; i++) {
+    if (allData[i].Area == area) {
+      var raw = allData[i].data;
+      console.log(raw);
+      $('#rawData' + i.toString()).append(
+        '<br />' +
+        '<p><strong> Population: </strong>' + raw['population'] + '</p>' +
+        '<p><strong> Median income: </strong>' + raw['Median income'] + '</p>' +
+        '<p><strong> Family Households With Children: </strong>' + raw['Family Households With Children'] + '</p>' +
+        '<p><strong> Hispanic Population: </strong>' + raw['Hispanic Population'] + '</p>' +
+        '<p><strong> Families without vehicles: </strong>' + raw['Families without vehicles'] + '</p>' +
+        '<p><strong> Families with only 1 vehicle: </strong>' + raw['Families with only 1 vehicle'] + '</p>' +
+        '<p><strong> Number of people working in this region: </strong>' + raw['Number of people working in this region'] + '</p>'
+      );
+    }
+  }
 }
 
 function componentToHex(c) {
@@ -123,10 +150,6 @@ function getRegionColor(scale) {
     // var G = Math.floor((255 * (100 - (100/scale))) / 100);
     // var B = 0;
     return rgbToHex(R,G,B);
-}
-
-function doShit() {
-  alert('fuk u');
 }
 
 $(document).ready(function() {
