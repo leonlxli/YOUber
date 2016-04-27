@@ -1,5 +1,6 @@
 var map;
 var allData;
+var infoWindow;
 
 /*d3.json("/getRankedData?uber=UberX", function(err, dat) {
     allData = dat.SortedData;
@@ -33,6 +34,7 @@ $('.uberType').mouseenter(function() {
 
 function selectUber(uber) {
 
+  infoWindow.close();
   map.data.forEach(function(region) {
     map.data.overrideStyle(region, { fillColor: 'black'});
   });
@@ -290,7 +292,7 @@ window.initMap = function() {
     var cityName;
     map.data.loadGeoJson('./map/sdcounty.json');
 
-    var infoWindow = new google.maps.InfoWindow({
+    infoWindow = new google.maps.InfoWindow({
 
     });
     // Creates the infoWindow object
