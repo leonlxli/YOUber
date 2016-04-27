@@ -7,39 +7,64 @@
 
 <body>
     <div id="landing" class="text-center">
+      <div class="container" style="padding-top: 200px">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <h1 class="text-center" style="font-size:100px">UBER UBER</h1>
+            <h3>Utilize UBER UBER to maximize your success as an Uber driver.</h3>
+            <h3>Choose your type of Uber and find out where you should go for the best requests.</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+          <br><br>
+          <a href="#selectButtons" class="page-scroll"><button id="landing-button" class="btn-lg btn-outline btn-submit text-uppercase">GET STARTED</button></a>
+        </div>
+      </div>
     </div>
+
 
     <div id="d3">
       <svg class="chart">
       </svg>
     </div>
 
+
     <div id="main">
 
       <div id="selectButtons">
-        <div class="selector">
+        <div class="selector"value="all">
           <center>
-          <br><br>
-          <h1>Click on a car to select your type of uber:</h1>
-          <br>
-          <!--These aren't responsibe buttons yet-->
-          <img onclick="selectUber('UberX')" src="/images/uberx.png" width="260" height="100">
-          <img onclick="selectUber('UberXL')" src="/images/uberxl.png" width="260" height="100">
-          <img onclick="selectUber('Uber Espanol')" src="/images/espanol.png" width="260" height="100">
-          <img onclick="selectUber('Uber Select')" src="/images/select.png" width="260" height="100">
-          <img onclick="selectUber('Uber Black')" src="/images/black.png" width="260" height="100">
-          <img onclick="selectUber('Uber SUV')" src="/images/suv.png" width="260" height="100">
+            <br><br>
+            <h1>Click on a car to select your type of uber:</h1>
+            <br>
+            <img onclick="selectUber('UberX')" src="/images/uberx.png" width="260" height="100" selected="true" class="uberType">
+            <img onclick="selectUber('UberXL')" src="/images/uberxl.png" width="260" height="100" selected="false" class="uberType">
+            <img onclick="selectUber('Uber Espanol')" src="/images/espanol.png" width="260" height="100" selected="false" class="uberType">
+            <img onclick="selectUber('Uber Select')" src="/images/select.png" width="260" height="100" selected="false" class="uberType">
+            <img onclick="selectUber('Uber Black')" src="/images/black.png" width="260" height="100" selected="false" class="uberType">
+            <img onclick="selectUber('Uber SUV')" src="/images/suv.png" width="260" height="100" selected="false" class="uberType">
           </center>
           <br><br><br>
         </div>
       </div>
 
       <div id="sidebar">
-        <div class="container">
-          <h1>Top 10 Places</h1>
+        <div>
+          <center>
+          <h1>Top 10 Regions</h1>
+          </center>
         </div>
+        <div id="uberTypeSelected">
+          <!--work done in index.js to display which uber type selected-->
+          <center>
+          <h3></h3></center>
+        </div>
+        <br>
         <ul id="rankings" class="list-group"></ul>
       </div>
+
       <div id="map"></div>
 
     </div>

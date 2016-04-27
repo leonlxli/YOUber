@@ -11,14 +11,14 @@ html, body {
   height: 100%;
   width: 100%;
   margin: 0 auto;
-  color: grey;
+  color: white;
+  background-color: black;
   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../images/landing.jpg');
   opacity: 1.6;
 }
 
 #landing-button {
-  position: absolute;
-  top: 60%;
+  color: #fff;
 }
 
 #sidebar {
@@ -30,6 +30,14 @@ html, body {
 .selector {
   background-color: black;
   color: white;
+}
+
+.selected {
+  border: 5px solid #dadada;
+  border-radius: 50%;
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
 }
 
 #map {
@@ -88,4 +96,38 @@ html, body {
 	fill: none;
 	stroke: #000;
 	shape-rendering: crispEdges;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+.btn-primary.btn-outline {
+    color: #428bca;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-info.btn-outline {
+    color: #5bc0de;
+}
+
+.btn-warning.btn-outline {
+    color: #f0ad4e;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: #fff;
 }

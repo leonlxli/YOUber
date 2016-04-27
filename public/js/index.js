@@ -1,5 +1,6 @@
 var map;
 var allData;
+var infoWindow;
 
 /*d3.json("/getRankedData?uber=UberX", function(err, dat) {
     allData = dat.SortedData;
@@ -8,16 +9,52 @@ var allData;
     // console.log(dat);
 });*/
 
+
+//for highlighting selected uber
+$('.uberType').mouseenter(function() {
+    if (!$(this).hasClass("selected")) {
+        $(this).addClass("hovered");
+    }
+}).mouseleave(function() {
+    $(this).removeClass("hovered");
+}).click(function() {
+    var buttons = $('.uberType');
+    for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i] != this) {
+            $(buttons[i]).removeClass("selected")
+        } else {
+            $(buttons[i]).addClass("selected")
+            $(buttons[i]).removeClass("hovered")
+            limit = 0;
+            index = 0;
+        }
+    }
+});
+
+
 function selectUber(uber) {
+
+  infoWindow.close();
+  map.data.forEach(function(region) {
+    map.data.overrideStyle(region, { fillColor: 'black'});
+  });
+
+  $('#uberTypeSelected h3').text("for " + uber + ":");
+
   $('#rankings').children('button').remove();
   d3.json('/getRankedData?uber=' + uber, function(err, dat) {
     allData = dat.SortedData;
     allData.sort(function(a, b) { return b.rank - a.rank; });
     for (var i = 0; i < 10; i++) {
-      console.log(allData[i]);
 
       // TODO: make it a clickable link that triggers onclick event to pop up d3 graph, as if you clicking on map.
       $('#rankings').append('<button class="ranking list-group-item" onclick="doShit()">' + allData[i].Area + '</button>');
+
+      map.data.forEach(function(region) {
+        if (region['R']['NAME'] == allData[i].Area.toUpperCase()) {
+          map.data.overrideStyle(region, {fillColor: 'green'});
+        }
+      });
     }
   });
 }
@@ -28,6 +65,7 @@ function doShit() {
 
 $(document).ready(function() {
   selectUber('UberX');
+  $("#all").addClass("selected");
 });
 
 $('#d3').hide();
@@ -171,6 +209,8 @@ function buildGraph(myData) {
 }
 
 
+
+
 window.initMap = function() {
 
     var minZoomLevel = 9;
@@ -179,9 +219,52 @@ window.initMap = function() {
         zoom: minZoomLevel,
         center: new google.maps.LatLng(32.8787, -117.0400),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        streetViewControl: false
+        streetViewControl: false,
+        zoomControl: false,
+        mapTypeControl: false
     });
 
+
+    function CenterControl(controlDiv, map) {
+
+      // Set CSS for the control border.
+      var controlUI = document.createElement('div');
+      controlUI.style.backgroundColor = '#fff';
+      controlUI.style.border = '2px solid #fff';
+      controlUI.style.borderRadius = '2px';
+      controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+      controlUI.style.cursor = 'pointer';
+      controlUI.style.marginBottom = '22px';
+      controlUI.style.marginLeft = '20px';
+      controlUI.style.marginTop = '20px';
+      controlUI.style.textAlign = 'center';
+      controlUI.title = 'Click to recenter the map';
+      controlDiv.appendChild(controlUI);
+
+      // Set CSS for the control interior.
+      var controlText = document.createElement('div');
+      controlText.style.color = 'rgb(25,25,25)';
+      controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+      controlText.style.fontSize = '13px';
+      controlText.style.lineHeight = '38px';
+      controlText.style.paddingLeft = '5px';
+      controlText.style.paddingRight = '5px';
+      controlText.innerHTML = 'Center Map';
+      controlUI.appendChild(controlText);
+
+      // Setup the click event listeners: simply set the map to Chicago.
+      controlUI.addEventListener('click', function() {
+        map.setCenter({lat:32.8787, lng:-117.0400});
+        map.setZoom(minZoomLevel);
+      });
+
+    }
+
+    var centerControlDiv = document.createElement('div');
+ var centerControl = new CenterControl(centerControlDiv, map);
+
+ centerControlDiv.index = 1;
+ map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
 
     // // Bounds for North America
     // var strictBounds = new google.maps.LatLngBounds(
@@ -208,15 +291,24 @@ window.initMap = function() {
 
     var cityName;
     map.data.loadGeoJson('./map/sdcounty.json');
-    map.data.addListener('mouseover', function(event) {
-        document.getElementById('info-box').textContent =
-            event.feature.getProperty('NAME');
-    });
 
-    var infoWindow = new google.maps.InfoWindow({
+    infoWindow = new google.maps.InfoWindow({
 
     });
     // Creates the infoWindow object
+
+    google.maps.event.addListener(map,'click', function(event){
+        infoWindow.close();
+        infoWindow = new google.maps.InfoWindow({
+
+        });
+        var html = "<center><p>Please click on an outlined<br>region for data!</p></center>";
+        infoWindow.setContent(html);
+        var latlng = event.latLng;
+        //console.log(latlng);
+        infoWindow.setPosition(latlng);
+        infoWindow.open(map);
+    });
 
 
     map.data.addListener('click', function(event) {
@@ -256,3 +348,15 @@ window.initMap = function() {
         // infoWindow.close();
     });
 }
+
+$("a.page-scroll").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#selectButtons").offset().top},
+        'slow');
+});
+
+$("img.uberType").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#sidebar").offset().top},
+        'slow');
+});
