@@ -1,11 +1,29 @@
 var map;
 var allData;
 
-d3.json("/getRankedData?uber=UberX", function(err, dat) {
+/*d3.json("/getRankedData?uber=UberX", function(err, dat) {
     allData = dat.SortedData;
     // console.log(allData);
     // console.log(dat.SortedData[0].data['scaled data']);
     // console.log(dat);
+});*/
+
+function selectUber(uber) {
+  $('#ranking').children('button').remove();
+  d3.json('/getRankedData?uber=' + uber, function(err, dat) {
+    allData = dat.SortedData;
+    allData.sort(function(a, b) { return b.rank - a.rank; });
+    for (var i = 0; i < 10; i++) {
+      console.log(allData[i]);
+
+      // TODO: make it a clickable link that triggers onclick event to pop up d3 graph, as if you clicking on map.
+      $('#rankings').append('<button class="ranking list-group-item">' + allData[i].Area + '</button>');
+    }
+  });
+}
+
+$(document).ready(function() {
+  selectUber('UberX');
 });
 
 $('#d3').hide();
@@ -230,7 +248,4 @@ window.initMap = function() {
     map.data.addListener("mouseout", function() {
         infoWindow.close();
     });
-
-
-
 }
