@@ -27,6 +27,11 @@ html, body {
   width: 33%;
 }
 
+.selector {
+  background-color: black;
+  color: white;
+}
+
 #map {
   float: left;
   height: 100%;
