@@ -8,11 +8,36 @@ var allData;
     // console.log(dat);
 });*/
 
+
+//for highlighting selected uber
+$('.uberType').mouseenter(function() {
+    if (!$(this).hasClass("selected")) {
+        $(this).addClass("hovered");
+    }
+}).mouseleave(function() {
+    $(this).removeClass("hovered");
+}).click(function() {
+    var buttons = $('.uberType');
+    for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i] != this) {
+            $(buttons[i]).removeClass("selected")
+        } else {
+            $(buttons[i]).addClass("selected")
+            $(buttons[i]).removeClass("hovered")
+            limit = 0;
+            index = 0;
+        }
+    }
+});
+
+
 function selectUber(uber) {
 
   map.data.forEach(function(region) {
     map.data.overrideStyle(region, { fillColor: 'black'});
   });
+
+  $('#uberTypeSelected h3').text("for " + uber + ":");
 
   $('#rankings').children('button').remove();
   d3.json('/getRankedData?uber=' + uber, function(err, dat) {
@@ -38,6 +63,7 @@ function doShit() {
 
 $(document).ready(function() {
   selectUber('UberX');
+  $("#all").addClass("selected");
 });
 
 $('#d3').hide();
