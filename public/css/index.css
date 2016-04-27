@@ -1,101 +1,111 @@
-html, body {
-  height: 100%;
-  margin: 0 auto;
+html,
+body {
+    height: 100%;
+    margin: 0 auto;
 }
 
 #main {
-  height: 100%;
+    height: 100%;
+}
+
+.uberType {
+    -webkit-filter: drop-shadow(3px 3px 0 white) drop-shadow(-3px -3px 0 white);
+    filter: drop-shadow(1px 1px 0 white) drop-shadow(-1px -1px 0 white);
+}
+
+.hovered {
+    -webkit-filter: drop-shadow(3px 3px 0 #00AFFF ) drop-shadow(-3px -3px 0 #00AFFF);
+    filter: drop-shadow(1px 1px 0 #00AFFF ) drop-shadow(-1px -1px 0 #00AFFF);
 }
 
 #landing {
-  height: 100%;
-  width: 100%;
-  margin: 0 auto;
-  color: white;
-  background-color: black;
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../images/landing.jpg');
-  opacity: 1.6;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    color: white;
+    background-color: black;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/landing.jpg');
+    opacity: 1.6;
 }
 
 #landing-button {
-  color: #fff;
+    color: #fff;
 }
 
 #sidebar {
-  float: left;
-  height: 100%;
-  width: 33%;
+    float: left;
+    height: 100%;
+    width: 33%;
 }
 
 .selector {
-  background-color: black;
-  color: white;
+    background-color: black;
+    color: white;
 }
 
 .selected {
-  border: 5px solid #dadada;
-  border-radius: 50%;
-  outline: none;
-  border-color: #9ecaed;
-  box-shadow: 0 0 10px #9ecaed;
+    -webkit-filter: drop-shadow(3px 3px 0 yellow) drop-shadow(-3px -3px 0 yellow);
+    filter: drop-shadow(1px 1px 0 yellow) drop-shadow(-1px -1px 0 yellow);
 }
 
 #map {
-  float: left;
-  height: 100%;
-  width: 67%;
+    float: left;
+    height: 100%;
+    width: 67%;
 }
 
 .chart {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .chart rect {
-  fill: steelblue;
+    fill: steelblue;
 }
+
 .polaroid {
-  position: relative;
-  width: 220px;
+    position: relative;
+    width: 220px;
 }
 
 .polaroid img {
-  border: 10px solid #fff;
-  border-bottom: 45px solid #fff;
-  -webkit-box-shadow: 3px 3px 3px #777;
-     -moz-box-shadow: 3px 3px 3px #777;
-          box-shadow: 3px 3px 3px #777;
+    border: 10px solid #fff;
+    border-bottom: 45px solid #fff;
+    -webkit-box-shadow: 3px 3px 3px #777;
+    -moz-box-shadow: 3px 3px 3px #777;
+    box-shadow: 3px 3px 3px #777;
 }
 
 .polaroid p {
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  bottom: 0px;
-  font: 400 18px/1 'Kaushan Script', cursive;
-  color: #888;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    font: 400 18px/1 'Kaushan Script', cursive;
+    color: #888;
 }
 
 #info-box {
-  background-color: white;
-  border: 1px solid black;
-  bottom: 30px;
-  height: 20px;
-  width: auto;
-  padding: 10px;
-  position: absolute;
-  left: 30px;
+    background-color: white;
+    border: 1px solid black;
+    bottom: 30px;
+    height: 20px;
+    width: auto;
+    padding: 10px;
+    position: absolute;
+    left: 30px;
 }
 
 .axis {
-  	  font: 10px sans-serif;
+    font: 10px sans-serif;
 }
 
-.axis path, .axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .btn-outline {
