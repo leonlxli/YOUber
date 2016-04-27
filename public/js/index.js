@@ -152,6 +152,10 @@ function getRegionColor(scale) {
     return rgbToHex(R,G,B);
 }
 
+function doShit() {
+  alert('fuk u');
+}
+
 $(document).ready(function() {
   selectUber('UberX');
   $("#all").addClass("selected");
