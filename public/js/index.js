@@ -218,15 +218,24 @@ window.initMap = function() {
 
     var cityName;
     map.data.loadGeoJson('./map/sdcounty.json');
-    map.data.addListener('mouseover', function(event) {
-        document.getElementById('info-box').textContent =
-            event.feature.getProperty('NAME');
-    });
 
     var infoWindow = new google.maps.InfoWindow({
 
     });
     // Creates the infoWindow object
+
+    google.maps.event.addListener(map,'click', function(event){
+        infoWindow.close();
+        infoWindow = new google.maps.InfoWindow({
+
+        });
+        var html = "<center><p>Please click on an outlined<br>region for data!</p></center>";
+        infoWindow.setContent(html);
+        var latlng = event.latLng;
+        //console.log(latlng);
+        infoWindow.setPosition(latlng);
+        infoWindow.open(map);
+    });
 
 
     map.data.addListener('click', function(event) {
