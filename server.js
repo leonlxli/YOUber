@@ -38,6 +38,7 @@ app.use(session({
 var router = {
     uberData: require("./routes/uberData"),
     rankData: require("./routes/ranker")
+        // invalid: require("./routes/invalid")
 };
 
 //set environment ports and start application
@@ -51,7 +52,13 @@ app.get('/', function(req, res) {
 app.get('/getRankedData', router.rankData.getData);
 app.get('/getUberData', router.uberData.getData);
 app.get('/uberData', router.uberData.saveData);
+app.get('/invalid', function(req, res) {
+    res.render('invalid');
+});
 
+app.all('*', function(req, res) {
+    res.redirect('/invalid');
+});
 
 
 
