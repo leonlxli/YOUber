@@ -345,3 +345,15 @@ window.initMap = function() {
         // infoWindow.close();
     });
 }
+
+$("a.page-scroll").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#selectButtons").offset().top},
+        'slow');
+});
+
+$("img.uberType").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#sidebar").offset().top},
+        'slow');
+});
