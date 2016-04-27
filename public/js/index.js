@@ -220,6 +220,7 @@ window.initMap = function() {
 
 
     map.data.addListener('click', function(event) {
+        infoWindow.close();
         infoWindow = new google.maps.InfoWindow({
 
         });
@@ -241,6 +242,7 @@ window.initMap = function() {
 
     // Opens infoWindow on click
     map.data.addListener("click", function(event) {
+        infoWindow.close();
         var latlng = event.latLng;
         //console.log(latlng);
         infoWindow.setPosition(latlng);
@@ -250,6 +252,6 @@ window.initMap = function() {
 
     // Closes window when mouseOut
     map.data.addListener("mouseout", function() {
-        infoWindow.close();
+        // infoWindow.close();
     });
 }
