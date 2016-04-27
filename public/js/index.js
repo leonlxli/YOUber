@@ -9,15 +9,25 @@ var allData;
 });*/
 
 function selectUber(uber) {
+
+  map.data.forEach(function(region) {
+    map.data.overrideStyle(region, { fillColor: 'black'});
+  });
+
   $('#rankings').children('button').remove();
   d3.json('/getRankedData?uber=' + uber, function(err, dat) {
     allData = dat.SortedData;
     allData.sort(function(a, b) { return b.rank - a.rank; });
     for (var i = 0; i < 10; i++) {
-      console.log(allData[i]);
 
       // TODO: make it a clickable link that triggers onclick event to pop up d3 graph, as if you clicking on map.
       $('#rankings').append('<button class="ranking list-group-item" onclick="doShit()">' + allData[i].Area + '</button>');
+
+      map.data.forEach(function(region) {
+        if (region['R']['NAME'] == allData[i].Area.toUpperCase()) {
+          map.data.overrideStyle(region, {fillColor: 'green'});
+        }
+      });
     }
   });
 }
