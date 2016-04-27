@@ -181,6 +181,8 @@ function buildGraph(myData) {
 }
 
 
+
+
 window.initMap = function() {
 
     var minZoomLevel = 9;
@@ -189,9 +191,52 @@ window.initMap = function() {
         zoom: minZoomLevel,
         center: new google.maps.LatLng(32.8787, -117.0400),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        streetViewControl: false
+        streetViewControl: false,
+        zoomControl: false,
+        mapTypeControl: false
     });
 
+
+    function CenterControl(controlDiv, map) {
+
+      // Set CSS for the control border.
+      var controlUI = document.createElement('div');
+      controlUI.style.backgroundColor = '#fff';
+      controlUI.style.border = '2px solid #fff';
+      controlUI.style.borderRadius = '2px';
+      controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+      controlUI.style.cursor = 'pointer';
+      controlUI.style.marginBottom = '22px';
+      controlUI.style.marginLeft = '20px';
+      controlUI.style.marginTop = '20px';
+      controlUI.style.textAlign = 'center';
+      controlUI.title = 'Click to recenter the map';
+      controlDiv.appendChild(controlUI);
+
+      // Set CSS for the control interior.
+      var controlText = document.createElement('div');
+      controlText.style.color = 'rgb(25,25,25)';
+      controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+      controlText.style.fontSize = '13px';
+      controlText.style.lineHeight = '38px';
+      controlText.style.paddingLeft = '5px';
+      controlText.style.paddingRight = '5px';
+      controlText.innerHTML = 'Center Map';
+      controlUI.appendChild(controlText);
+
+      // Setup the click event listeners: simply set the map to Chicago.
+      controlUI.addEventListener('click', function() {
+        map.setCenter({lat:32.8787, lng:-117.0400});
+        map.setZoom(minZoomLevel);
+      });
+
+    }
+
+    var centerControlDiv = document.createElement('div');
+ var centerControl = new CenterControl(centerControlDiv, map);
+
+ centerControlDiv.index = 1;
+ map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
 
     // // Bounds for North America
     // var strictBounds = new google.maps.LatLngBounds(
