@@ -87,6 +87,7 @@ exports.getData = function(req, res) {
     }
     var datalist = []
     for (var area in data) {
+        console.log(area);
         var areaObj = {}
         var areaDat = data[area]['scaled data'];
         var power = areaDat['population scaled'] * uberRank['population weight'] +
