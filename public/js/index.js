@@ -221,7 +221,8 @@ window.initMap = function() {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         streetViewControl: false,
         zoomControl: false,
-        mapTypeControl: false
+        mapTypeControl: false,
+        scrollwheel: false
     });
 
 
