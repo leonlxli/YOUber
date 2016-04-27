@@ -45,9 +45,9 @@ function selectUber(uber) {
     allData = dat.SortedData;
     allData.sort(function(a, b) { return b.rank - a.rank; });
     for (var i = 0; i < 10; i++) {
-
+        var rank = (i+1);
       // TODO: make it a clickable link that triggers onclick event to pop up d3 graph, as if you clicking on map.
-      $('#rankings').append('<button class="ranking list-group-item" onclick="doShit()">' + allData[i].Area + '</button>');
+      $('#rankings').append('<button class="ranking list-group-item" onclick="doShit()">' + rank+". " + allData[i].Area + '</button>');
 
     }
 

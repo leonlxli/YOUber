@@ -1,31 +1,31 @@
 var uberXrank = {
-    'population weight': 0.7,
+    'population weight': 0.8,
     'hispanic weight': 0,
-    'income weight': 0.5,
-    'no vehicle weight': 0.5,
-    'one vehicle weight': 0.3,
-    'family weight': 0.5,
-    'workers weight': 0.5
+    'income weight': 0.2,
+    'no vehicle weight': 2,
+    'one vehicle weight': 0.1,
+    'family weight': 0.2,
+    'workers weight': 0.2
 }
 
 var uberEsponalRank = {
-    'population weight': 0.7,
-    'hispanic weight': 1,
-    'income weight': 0.5,
-    'no vehicle weight': 0.5,
-    'one vehicle weight': 0.3,
-    'family weight': 0.5,
-    'workers weight': 0.5
+    'population weight': 0.3,
+    'hispanic weight': 2,
+    'income weight': 0.1,
+    'no vehicle weight': 0.1,
+    'one vehicle weight': 0,
+    'family weight': 0.2,
+    'workers weight': 0
 }
 
 var uberSelectRank = {
-    'population weight': 0.5,
+    'population weight': 0.2,
     'hispanic weight': 0,
-    'income weight': 0.8,
-    'no vehicle weight': 0.3,
+    'income weight': 1,
+    'no vehicle weight': 0.1,
     'one vehicle weight': 0.1,
     'family weight': 0.3,
-    'workers weight': .8
+    'workers weight': 1
 }
 
 var blackRank = {
@@ -35,7 +35,7 @@ var blackRank = {
     'no vehicle weight': 0.8,
     'one vehicle weight': 0.4,
     'family weight': 0.2,
-    'workers weight': .8
+    'workers weight': 3
 }
 
 var UBER_SUVRank = {
@@ -44,8 +44,8 @@ var UBER_SUVRank = {
     'income weight': 0.9,
     'no vehicle weight': 0.8,
     'one vehicle weight': 0.1,
-    'family weight': .8,
-    'workers weight': 0.6
+    'family weight': 2,
+    'workers weight': 1
 }
 
 var UBERXLRank = {
@@ -54,7 +54,7 @@ var UBERXLRank = {
     'income weight': 0.5,
     'no vehicle weight': 1,
     'one vehicle weight': 0.7,
-    'family weight': .8,
+    'family weight': 1,
     'workers weight': 0.8
 }
 
@@ -97,6 +97,9 @@ exports.getData = function(req, res) {
             areaDat['Families without vehicles scaled'] * uberRank['no vehicle weight'] +
             areaDat['Families with only 1 vehicle scaled'] * uberRank['one vehicle weight'] +
             areaDat['Number of people working in this region'] * uberRank['workers weight'];
+        if (req.query.uber == 'Uber Espanol'){
+            power+= (data[area]['Hispanic Population']/data[area]['population'] * 15);
+        }
         areaObj['power'] = power;
         areaObj['Area'] = area;
         areaObj['data'] = data[area];
