@@ -9,7 +9,7 @@ var allData;
 });*/
 
 function selectUber(uber) {
-  $('#ranking').children('button').remove();
+  $('#rankings').children('button').remove();
   d3.json('/getRankedData?uber=' + uber, function(err, dat) {
     allData = dat.SortedData;
     allData.sort(function(a, b) { return b.rank - a.rank; });
@@ -17,9 +17,13 @@ function selectUber(uber) {
       console.log(allData[i]);
 
       // TODO: make it a clickable link that triggers onclick event to pop up d3 graph, as if you clicking on map.
-      $('#rankings').append('<button class="ranking list-group-item">' + allData[i].Area + '</button>');
+      $('#rankings').append('<button class="ranking list-group-item" onclick="doShit()">' + allData[i].Area + '</button>');
     }
   });
+}
+
+function doShit() {
+  alert('fuk u');
 }
 
 $(document).ready(function() {
