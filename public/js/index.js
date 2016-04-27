@@ -180,10 +180,10 @@ function buildGraph(myData) {
         .call(yAxis)
         .append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 6)
+        .attr("y", -35)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Frequency");
+        .text("Rankings Compared to Other Regions");
 
 
 
@@ -314,7 +314,7 @@ window.initMap = function() {
     map.data.addListener('click', function(event) {
         infoWindow.close();
         infoWindow = new google.maps.InfoWindow({
-            
+
         });
         cityName = event.feature.getProperty('NAME');
         for (i = 0; i < allData.length; i++) {
