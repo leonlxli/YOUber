@@ -1,11 +1,33 @@
 var map;
 var allData;
 
-d3.json("/getRankedData?uber=UberX", function(err, dat) {
+/*d3.json("/getRankedData?uber=UberX", function(err, dat) {
     allData = dat.SortedData;
     // console.log(allData);
     // console.log(dat.SortedData[0].data['scaled data']);
     // console.log(dat);
+});*/
+
+function selectUber(uber) {
+  $('#rankings').children('button').remove();
+  d3.json('/getRankedData?uber=' + uber, function(err, dat) {
+    allData = dat.SortedData;
+    allData.sort(function(a, b) { return b.rank - a.rank; });
+    for (var i = 0; i < 10; i++) {
+      console.log(allData[i]);
+
+      // TODO: make it a clickable link that triggers onclick event to pop up d3 graph, as if you clicking on map.
+      $('#rankings').append('<button class="ranking list-group-item" onclick="doShit()">' + allData[i].Area + '</button>');
+    }
+  });
+}
+
+function doShit() {
+  alert('fuk u');
+}
+
+$(document).ready(function() {
+  selectUber('UberX');
 });
 
 $('#d3').hide();
@@ -198,6 +220,7 @@ window.initMap = function() {
 
 
     map.data.addListener('click', function(event) {
+        infoWindow.close();
         infoWindow = new google.maps.InfoWindow({
             
         });
@@ -219,6 +242,7 @@ window.initMap = function() {
 
     // Opens infoWindow on click
     map.data.addListener("click", function(event) {
+        infoWindow.close();
         var latlng = event.latLng;
         //console.log(latlng);
         infoWindow.setPosition(latlng);
@@ -229,9 +253,6 @@ window.initMap = function() {
 
     // Closes window when mouseOut
     map.data.addListener("mouseout", function() {
-        infoWindow.close();
+        // infoWindow.close();
     });
-
-
-
 }

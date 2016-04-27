@@ -1,3 +1,38 @@
+html, body {
+  height: 100%;
+  margin: 0 auto;
+}
+
+#main {
+  height: 100%;
+}
+
+#landing {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  color: grey;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../images/landing.jpg');
+  opacity: 1.6;
+}
+
+#landing-button {
+  position: absolute;
+  top: 60%;
+}
+
+#sidebar {
+  float: left;
+  height: 100%;
+  width: 33%;
+}
+
+#map {
+  float: left;
+  height: 100%;
+  width: 67%;
+}
+
 .chart {
   display: block;
   margin-left: auto;
@@ -40,19 +75,12 @@
   left: 30px;
 }
 
-#map {
-    height: 500px;
-    width: 80%;
-    margin: 0 auto;
+.axis {
+  	  font: 10px sans-serif;
 }
 
-  .axis {
-  	  font: 10px sans-serif;
-  }
-
-	.axis path,
-	.axis line {
-	  fill: none;
-	  stroke: #000;
-	  shape-rendering: crispEdges;
-	}
+.axis path, .axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}

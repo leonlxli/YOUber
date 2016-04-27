@@ -6,12 +6,23 @@
 </head>
 
 <body>
+    <div id="landing" class="text-center">
+    </div>
     <div id="d3">
       <svg class="chart">
       </svg>
     </div>
-    <div id="map"></div>
-    <div id="info-box">?</div>
+    <div id="main">
+      <div id="sidebar">
+        <div class="container">
+          <h1>Top 10 Places</h1>
+        </div>
+        <ul id="rankings" class="list-group"></ul>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <!--div id="info-box">?</div-->
 
 
 
@@ -21,7 +32,7 @@
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="/js/index.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeAnNaWn4NxU_2lyPMot7FQlMikqHdPuQ
-        &libraries=visualization&callback=initMap">
+        &libraries=visualization&callback=initMap"></script>
 
 
 
