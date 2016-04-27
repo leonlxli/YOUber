@@ -31,7 +31,6 @@ $('.uberType').mouseenter(function() {
     }
 });
 
-
 function selectUber(uber) {
 
   infoWindow.close();
@@ -50,13 +49,80 @@ function selectUber(uber) {
       // TODO: make it a clickable link that triggers onclick event to pop up d3 graph, as if you clicking on map.
       $('#rankings').append('<button class="ranking list-group-item" onclick="doShit()">' + allData[i].Area + '</button>');
 
-      map.data.forEach(function(region) {
+    }
+
+    for (var i = 0; i < allData.length; i++){
+        map.data.forEach(function(region) {
         if (region['R']['NAME'] == allData[i].Area.toUpperCase()) {
-          map.data.overrideStyle(region, {fillColor: 'green'});
+          map.data.overrideStyle(region, {fillColor: getRegionColor(i+1)});
         }
       });
     }
   });
+}
+
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+
+function getRegionColor(scale) {
+    var R = 0;
+    var G = 0;
+    var B = 0;
+    if (scale <= 5) {
+        // R = 0;
+        G = 255;
+    }
+    // else if (scale <=20 && scale > 10) {
+    //     R = 20;
+    //     G = 180;
+    // }
+    // else if (scale <=30 && scale > 20) {
+    //     R = 50;
+    //     G = 100;
+    // }
+    // else if (scale <=41 && scale > 30) {
+    //     R = 255;
+    // }
+    else if (scale <=10 && scale > 5) {
+        G = 210;
+    }
+    else if (scale <=15 && scale > 10) {
+        G = 170;
+    }
+    else if (scale <=20 && scale > 15) {
+        // R = 40;
+        G = 130;
+    }
+    else if (scale <=25 && scale > 20) {
+        // R = 90;
+        G = 90;
+    }
+    else if (scale <=30 && scale > 25) {
+        R = 130;
+        G = 50;
+    }
+    else if (scale <=35 && scale > 30) {
+        R = 170;
+        G = 10;
+    }
+    else if (scale <=40 && scale > 35) {
+        R = 210;
+    }
+    else if (scale <=42 && scale >40) {
+        R = 255;
+    }
+
+    // var R = Math.floor((255 * (100/scale))/ 100);
+    // var G = Math.floor((255 * (100 - (100/scale))) / 100);
+    // var B = 0;
+    return rgbToHex(R,G,B);
 }
 
 function doShit() {
