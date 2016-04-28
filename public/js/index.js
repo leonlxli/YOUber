@@ -9,6 +9,36 @@ var infoWindow;
     // console.log(dat);
 });*/
 
+//function that begins at start
+$(document).ready(function() {
+  //selectUber('UberX');
+  $("#all").addClass("selected");
+
+  $('#rankings').children('button').remove();
+  $('#rankings').children('div').remove();
+  d3.json('/getRankedData?uber=UberX', function(err, dat) {
+    allData = dat.SortedData;
+    allData.sort(function(a, b) { return b.rank - a.rank; });
+    console.log(allData);
+    for (var i = 0; i < 10; i++) {
+
+      // TODO: make it a clickable link that triggers onclick event to pop up d3 graph, as if you clicking on map.
+      $('#rankings').append(
+        '<button class="ranking list-group-item" onclick="displayRaw(\'' + allData[i].Area + '\')">' +  (i + 1) + '. ' + allData[i].Area + '</button>' +
+        '<div class="raw container" id="rawData' + i + '"></div>'
+      );
+
+    }
+
+    for (var i = 0; i < allData.length; i++){
+        map.data.forEach(function(region) {
+        if (region['R']['NAME'] == allData[i].Area.toUpperCase()) {
+          map.data.overrideStyle(region, {fillColor: getRegionColor(i+1), fillOpacity: 0.5});
+        }
+      });
+    }
+  });
+});
 
 //for highlighting selected uber
 $('.uberType').mouseenter(function() {
@@ -200,11 +230,6 @@ function getRegionColor(scale) {
 function doShit() {
   alert('fuk u');
 }
-
-$(document).ready(function() {
-  selectUber('UberX');
-  $("#all").addClass("selected");
-});
 
 $('#d3').hide();
 //var data = [4, 8, 15, 16, 23, 42];
