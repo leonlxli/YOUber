@@ -70,6 +70,51 @@ function displayRaw(area) {
   $('.raw').children('p').remove();
   $('.raw').children('br').remove();
 
+  infoWindow.close();
+  infoWindow = new google.maps.InfoWindow({
+
+  });
+  cityName = area;
+  for (i = 0; i < allData.length; i++) {
+      //console.log(cityName);
+      //buildGraph(cityName, infoWindow);
+      if (cityName.toUpperCase() == allData[i].Area.toUpperCase()) {
+        console.log(allData[i]);
+          // Render Data for bar graphs
+          // console.log(allData[i].data['scaled data']);
+          var bars = buildGraph(allData[i]);
+
+      }
+  }
+  var html = "<p>" + cityName + "</p>";
+  var d3 = $('#d3').html();
+  // console.log(d3);
+  var lat;
+  var lng;
+  var latlng;
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({'address': cityName+', san diego us'}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      lat = results[0].geometry.location.lat();
+      lng = results[0].geometry.location.lng();
+      console.log(lat);
+      console.log(lng);
+      latlng = new google.maps.LatLng(lat, lng);
+      infoWindow.setPosition(latlng);
+    }
+    else {
+      console.log("ERROR");
+    }
+  });
+
+  console.log(lat);
+  console.log(lng);
+
+  console.log(latlng);
+
+  infoWindow.setContent(html + d3);
+  infoWindow.open(map);
+
   for (var i = 0; i < 10; i++) {
     if (allData[i].Area == area) {
       var raw = allData[i].data;
@@ -167,11 +212,11 @@ $('#d3').hide();
 function buildGraph(myData) {
     d3.selectAll("svg > *").remove();
 
-    var obj = allData[i].data['scaled data']; // gets all the scaled data json
-    var arr = Object.keys(obj).map(function(k) {
-        return obj[k]
-    }); // converts the values to an array
-    var key = Object.keys(obj); // gets the key of json
+    //var obj = allData[i].data['scaled data']; // gets all the scaled data json
+    // var arr = Object.keys(obj).map(function(k) {
+    //     return obj[k]
+    // }); // converts the values to an array
+    //var key = Object.keys(obj); // gets the key of json
 
     var scale = {
         //x: d3.scale.ordinal(),
@@ -196,7 +241,7 @@ function buildGraph(myData) {
         return result;
     }
 
-    var dataset = mergeArray(key, arr);
+    //var dataset = mergeArray(key, arr);
 
     scale.y.domain([0, 10]);
     scale.y.range([height, 0]);
@@ -302,8 +347,6 @@ function buildGraph(myData) {
 }
 
 
-
-
 window.initMap = function() {
 
     var minZoomLevel = 9;
@@ -403,7 +446,6 @@ window.initMap = function() {
         infoWindow.setPosition(latlng);
         infoWindow.open(map);
     });
-
 
     map.data.addListener('click', function(event) {
         infoWindow.close();
