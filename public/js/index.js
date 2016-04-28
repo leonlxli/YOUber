@@ -76,7 +76,7 @@ function selectUber(uber) {
     map.data.overrideStyle(region, { fillColor: 'black'});
   });
 
-  $('#uberTypeSelected h3').text("for " + uber + ":");
+  $('#uberTypeSelected').text("for " + uber + ":");
 
   $('#rankings').children('button').remove();
   $('#rankings').children('div').remove();
