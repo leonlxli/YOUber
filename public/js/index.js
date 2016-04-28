@@ -111,7 +111,7 @@ function displayRaw(area) {
 
   infoWindow.close();
   infoWindow = new google.maps.InfoWindow({
-
+    content: '<div class="scrollFix"></div>'
   });
   cityName = area;
   for (i = 0; i < allData.length; i++) {
@@ -181,7 +181,7 @@ function displayRaw(area) {
     }
   }
 
-  infoWindow.setContent(html + d3 + rawData);
+  infoWindow.setContent('<div class="scrollFix">' + html + d3 + rawData + '</div>');
   infoWindow.open(map);
 }
 
@@ -516,7 +516,7 @@ map.setOptions({styles: styleArray});
     google.maps.event.addListener(map,'click', function(event){
         infoWindow.close();
         infoWindow = new google.maps.InfoWindow({
-
+          content: '<div class="scrollFix"></div>'
         });
         var html = "<center><p>Please click on an outlined<br>region for data!</p></center>";
         infoWindow.setContent(html);
@@ -529,7 +529,7 @@ map.setOptions({styles: styleArray});
     map.data.addListener('click', function(event) {
         infoWindow.close();
         infoWindow = new google.maps.InfoWindow({
-          content: '<div class="scrollFix"></div>',
+          content: '<div class="scrollFix"></div>'
         });
 
         var rawData;
