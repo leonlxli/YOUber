@@ -595,6 +595,7 @@ map.setOptions({styles: styleArray});
     });
 }
 
+
 $("a.page-scroll").click(function() {
     $('html,body').animate({
         scrollTop: $("#selectButtons").offset().top},
