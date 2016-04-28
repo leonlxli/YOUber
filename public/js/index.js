@@ -415,6 +415,31 @@ window.initMap = function() {
     });
 
 
+    var styleArray = [
+      {
+        featureType: "all",
+        stylers: [
+          { saturation: -80 }
+        ]
+      },{
+        featureType: "road.arterial",
+        elementType: "geometry",
+        stylers: [
+          { hue: "#00ffee" },
+          { saturation: 50 }
+        ]
+      },{
+        featureType: "poi.business",
+        elementType: "labels",
+        stylers: [
+          { visibility: "off" }
+        ]
+      }
+    ];
+
+map.setOptions({styles: styleArray});
+
+
     function CenterControl(controlDiv, map) {
 
       // Set CSS for the control border.
