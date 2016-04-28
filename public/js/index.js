@@ -33,6 +33,13 @@ $(document).ready(function() {
     for (var i = 0; i < allData.length; i++){
         map.data.forEach(function(region) {
         if (region['R']['NAME'] == allData[i].Area.toUpperCase()) {
+          //map.data.overrideStyle(region, {fillColor: getRegionColor(i+1), fillOpacity: 0.5});
+          // map.data.setStyle(function(feature){
+          //   //var color = getRegionColor(i+1);
+          //   return ({ fillColor: getRegionColor(i+1),
+          //               fillOpacity: 0.5,
+          //               strokeWeight: 2  });
+          // });
           map.data.overrideStyle(region, {fillColor: getRegionColor(i+1), fillOpacity: 0.5});
         }
       });
@@ -386,6 +393,13 @@ window.initMap = function() {
         scrollwheel: false
     });
 
+    map.data.setStyle(function(feature){
+        var color = feature.getProperty('color');
+        return ({ fillColor: color,
+                        fillOpacity: 0.5,
+                        strokeWeight: 2  });
+    });
+
 
     function CenterControl(controlDiv, map) {
 
@@ -505,8 +519,14 @@ window.initMap = function() {
     });
 
     // Closes window when mouseOut
-    map.data.addListener("mouseout", function() {
+    map.data.addListener("mouseout", function(event) {
         // infoWindow.close();
+        map.data.overrideStyle(event.feature, {strokeWeight: 2});
+    });
+
+    map.data.addListener('mouseover', function(event) {
+        //map.data.revertStyle();
+        map.data.overrideStyle(event.feature, {strokeWeight: 6});
     });
 }
 
