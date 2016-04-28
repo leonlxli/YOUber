@@ -73,6 +73,7 @@ p.app-description {
     font-family: 'Roboto';
     border-radius: 0px;
     letter-spacing: 4px;
+    border-color: white;
 }
 
 #sidebar {
