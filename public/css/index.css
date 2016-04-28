@@ -40,6 +40,9 @@ body {
     width: 33%;
 }
 
+.row{
+  padding-left: 67px;
+}
 
 .selector {
     background-color: black;
