@@ -582,16 +582,16 @@ map.setOptions({styles: styleArray});
     });
 
     map.data.addListener('mouseover', function(event) {
-        //map.data.revertStyle();
-
         tooltip = new google.maps.InfoWindow({
           pixelOffset: new google.maps.Size(0, -10)
         });
-        console.log(event.latLng);
         tooltip.setPosition(event.latLng);
         tooltip.setContent('<p>' + event.feature.getProperty('NAME') + '</p><p> Click for more Information</p>');
         tooltip.open(map);
         map.data.overrideStyle(event.feature, {strokeWeight: 6});
+    });
+    map.data.addListener('mousemove', function(event) {
+        tooltip.setPosition(event.latLng);
     });
 }
 
