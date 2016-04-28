@@ -529,7 +529,7 @@ map.setOptions({styles: styleArray});
     map.data.addListener('click', function(event) {
         infoWindow.close();
         infoWindow = new google.maps.InfoWindow({
-
+          content: '<div class="scrollFix"></div>',
         });
 
         var rawData;
@@ -557,7 +557,7 @@ map.setOptions({styles: styleArray});
         var html = "<p>" + cityName + "</p>";
         var d3 = $('#d3').html();
         // console.log(d3);
-        infoWindow.setContent(html + d3 + rawData);
+        infoWindow.setContent('<div class="scrollFix">'+html + d3 + rawData + '</div>');
         //buildGraph(html, infoWindow);
     })
 
