@@ -495,7 +495,8 @@ window.initMap = function() {
 
     centerControlDiv.index = 1;
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
-    map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(meter);
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(meter);
+    // console.log(map.controls[google.maps.ControlPosition.BOTTOM_LEFT]);
 
 
     // // Bounds for North America
