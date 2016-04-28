@@ -36,7 +36,7 @@ body {
 
 #sidebar {
     float: left;
-    height: 70%;
+    height: 80%;
     width: 33%;
 }
 
@@ -53,7 +53,7 @@ body {
 
 #map {
     float: left;
-    height: 70%;
+    height: 80%;
     width: 67%;
 }
 
