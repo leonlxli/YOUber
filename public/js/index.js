@@ -540,7 +540,9 @@ window.initMap = function() {
     map.data.addListener("click", function(event) {
         infoWindow.close();
         var latlng = event.latLng;
-        //console.log(latlng);
+        if(tooltip){
+            tooltip.close();
+        }
         infoWindow.setPosition(latlng);
         infoWindow.open(map);
         map.setCenter(infoWindow.getPosition());
@@ -562,7 +564,7 @@ window.initMap = function() {
         });
         console.log(event.latLng);
         tooltip.setPosition(event.latLng);
-        tooltip.setContent('<p>' + event.feature.getProperty('NAME') + '</p>');
+        tooltip.setContent('<p>' + event.feature.getProperty('NAME') + '</p><p> Click for more Information</p>');
         tooltip.open(map);
         map.data.overrideStyle(event.feature, {strokeWeight: 6});
     });
