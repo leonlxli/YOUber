@@ -95,7 +95,8 @@ function selectUber(uber) {
 
     for (var i = 0; i < allData.length; i++){
         map.data.forEach(function(region) {
-        if (region['R']['NAME'] == allData[i].Area.toUpperCase()) {
+            console.log(region);
+        if (region['H']['NAME'] == allData[i].Area.toUpperCase()) {
           map.data.overrideStyle(region, {fillColor: getRegionColor(i+1), fillOpacity: 0.5});
         }
       });

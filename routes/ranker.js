@@ -41,7 +41,7 @@ var blackRank = {
 var UBER_SUVRank = {
     'population weight': 0.5,
     'hispanic weight': 0,
-    'income weight': 0.9,
+    'income weight': 1,
     'no vehicle weight': 0.8,
     'one vehicle weight': 0.1,
     'family weight': 2,
@@ -63,8 +63,8 @@ exports.getData = function(req, res) {
     var data = require('../DelphiUberData.json');
     console.log(req.query);
     var uberRank;
-    if(!req.query.uber){
-    	res.json({
+    if (!req.query.uber) {
+        res.json({
             'err': 'Need to provide an Uber. Options are UberX, Uber Espanol, Uber Select, Uber Black, Uber SUV'
         })
     }
@@ -97,8 +97,11 @@ exports.getData = function(req, res) {
             areaDat['Families without vehicles scaled'] * uberRank['no vehicle weight'] +
             areaDat['Families with only 1 vehicle scaled'] * uberRank['one vehicle weight'] +
             areaDat['Number of people working in this region'] * uberRank['workers weight'];
-        if (req.query.uber == 'Uber Espanol'){
-            power+= (data[area]['Hispanic Population']/data[area]['population'] * 15);
+        if (req.query.uber == 'Uber Espanol') {
+            power += (data[area]['Hispanic Population'] / data[area]['population'] * 15);
+        }
+        if (req.query.uber == 'Uber SUV') {
+            power += (data[area]['Family Households With Children scaled'] / (data[area]['population']/3) * 15);
         }
         areaObj['power'] = power;
         areaObj['Area'] = area;
@@ -106,12 +109,14 @@ exports.getData = function(req, res) {
         datalist.push(areaObj);
     }
     datalist.sort(function(a, b) {
-    		return a['power']-b['power'];
-        })
-    for(var i = 0; i<datalist.length;i++){
-    	datalist[i]['rank'] = i+1;
+        return a['power'] - b['power'];
+    })
+    for (var i = 0; i < datalist.length; i++) {
+        datalist[i]['rank'] = i + 1;
     }
-    var result = {'SortedData': datalist};
+    var result = {
+        'SortedData': datalist
+    };
     console.log(result)
     res.json(result);
 }
