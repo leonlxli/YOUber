@@ -39,7 +39,7 @@ h3.uber-selection {
 
 ul.list-group {
     font-family: 'Raleway';
-    font-weight: 200;
+    font-weight: 300;
 }
 
 p.app-description {
@@ -73,6 +73,7 @@ p.app-description {
     font-family: 'Roboto';
     border-radius: 0px;
     letter-spacing: 4px;
+    border-color: white;
 }
 
 #sidebar {
@@ -82,7 +83,7 @@ p.app-description {
 }
 
 .row{
-  padding-left: 67px;
+  /* padding-left: 67px; */
 }
 
 .selector {
