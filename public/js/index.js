@@ -150,14 +150,13 @@ function displayRaw(area) {
 
   console.log(latlng);
 
-  infoWindow.setContent(html + d3);
-  infoWindow.open(map);
+  var rawData;
 
   for (var i = 0; i < 10; i++) {
     if (allData[i].Area == area) {
       var raw = allData[i].data;
-      console.log(raw);
-      $('#rawData' + i.toString()).append(
+      // console.log(raw);
+      /* $('#rawData' + i.toString()).append(
         '<br />' +
         '<p><strong> Population: </strong>' + raw['population'] + '</p>' +
         '<p><strong> Median income: </strong>' + raw['Median income'] + '</p>' +
@@ -166,9 +165,23 @@ function displayRaw(area) {
         '<p><strong> Families without vehicles: </strong>' + raw['Families without vehicles'] + '</p>' +
         '<p><strong> Families with only 1 vehicle: </strong>' + raw['Families with only 1 vehicle'] + '</p>' +
         '<p><strong> Number of people working in this region: </strong>' + raw['Number of people working in this region'] + '</p>'
-      );
+      );*/
+      rawData =
+      '<div class="row">' +
+      '<br />' +
+      '<p class="col-md-6"><strong> Population: </strong>' + raw['population'] + '</p>' +
+      '<p class="col-md-6"><strong> Median income: </strong>' + raw['Median income'] + '</p>' +
+      '<p class="col-md-6"><strong> Family Households With Children: </strong>' + raw['Family Households With Children'] + '</p>' +
+      '<p class="col-md-6"><strong> Hispanic Population: </strong>' + raw['Hispanic Population'] + '</p>' +
+      '<p class="col-md-6"><strong> Families without vehicles: </strong>' + raw['Families without vehicles'] + '</p>' +
+      '<p class="col-md-6"><strong> Families with only 1 vehicle: </strong>' + raw['Families with only 1 vehicle'] + '</p>' +
+      '<p class="col-md-6"><strong> Number of people working in this region: </strong>' + raw['Number of people working in this region'] + '</p>' +
+      '</div>';
     }
   }
+
+  infoWindow.setContent(html + d3 + rawData);
+  infoWindow.open(map);
 }
 
 function componentToHex(c) {
@@ -492,19 +505,33 @@ window.initMap = function() {
         infoWindow = new google.maps.InfoWindow({
 
         });
+
+        var rawData;
         cityName = event.feature.getProperty('NAME');
         for (i = 0; i < allData.length; i++) {
             if (cityName.toUpperCase() == allData[i].Area.toUpperCase()) {
                 // Render Data for bar graphs
                 // console.log(allData[i].data['scaled data']);
                 var bars = buildGraph(allData[i], infoWindow);
+                var raw = allData[i].data;
 
+                rawData =
+                '<div class="row">' +
+                '<br />' +
+                '<p class="col-md-6"><strong> Population: </strong>' + raw['population'] + '</p>' +
+                '<p class="col-md-6"><strong> Median income: </strong>' + raw['Median income'] + '</p>' +
+                '<p class="col-md-6"><strong> Family Households With Children: </strong>' + raw['Family Households With Children'] + '</p>' +
+                '<p class="col-md-6"><strong> Hispanic Population: </strong>' + raw['Hispanic Population'] + '</p>' +
+                '<p class="col-md-6"><strong> Families without vehicles: </strong>' + raw['Families without vehicles'] + '</p>' +
+                '<p class="col-md-6"><strong> Families with only 1 vehicle: </strong>' + raw['Families with only 1 vehicle'] + '</p>' +
+                '<p class="col-md-6"><strong> Number of people working in this region: </strong>' + raw['Number of people working in this region'] + '</p>' +
+                '</div>';
             }
         }
         var html = "<p>" + cityName + "</p>";
         var d3 = $('#d3').html();
         // console.log(d3);
-        infoWindow.setContent(html + d3);
+        infoWindow.setContent(html + d3 + rawData);
         //buildGraph(html, infoWindow);
     })
 
