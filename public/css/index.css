@@ -42,6 +42,10 @@ h3.uber-selection {
     font-family: 'Raleway';
 }
 
+.helpButton {
+    border-radius: 0px;
+}
+
 #instr {
     text-align: center;
 }
@@ -92,7 +96,7 @@ p.app-description {
 }
 
 .row {
-     padding-left: 67px; 
+     padding-left: 67px;
 }
 
 .selector {
