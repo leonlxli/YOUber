@@ -1,6 +1,7 @@
 var map;
 var allData;
 var infoWindow;
+var tooltip;
 
 /*d3.json("/getRankedData?uber=UberX", function(err, dat) {
     allData = dat.SortedData;
@@ -549,11 +550,20 @@ window.initMap = function() {
     // Closes window when mouseOut
     map.data.addListener("mouseout", function(event) {
         // infoWindow.close();
+        if (tooltip) tooltip.close();
         map.data.overrideStyle(event.feature, {strokeWeight: 2});
     });
 
     map.data.addListener('mouseover', function(event) {
         //map.data.revertStyle();
+
+        tooltip = new google.maps.InfoWindow({
+          pixelOffset: new google.maps.Size(0, -10)
+        });
+        console.log(event.latLng);
+        tooltip.setPosition(event.latLng);
+        tooltip.setContent('<p>' + event.feature.getProperty('NAME') + '</p>');
+        tooltip.open(map);
         map.data.overrideStyle(event.feature, {strokeWeight: 6});
     });
 }
