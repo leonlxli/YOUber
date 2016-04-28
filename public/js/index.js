@@ -255,10 +255,6 @@ function getRegionColor(scale) {
     return rgbToHex(R, G, B);
 }
 
-function doShit() {
-    alert('fuk u');
-}
-
 $('#d3').hide();
 //var data = [4, 8, 15, 16, 23, 42];
 // Function to create the bar graph
