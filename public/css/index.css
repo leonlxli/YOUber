@@ -9,6 +9,7 @@ body {
 #main {
     height: 100%;
 }
+
 h1.text-center {
     font-family: 'Exo';
     letter-spacing: 20px;
@@ -20,7 +21,7 @@ h1.click-car {
     text-transform: uppercase;
 }
 
-h1.region-title{
+h1.region-title {
     font-family: 'Exo';
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -35,6 +36,10 @@ h3.landing-description {
 
 h3.uber-selection {
     font-family: 'Raleway';
+}
+
+#instr {
+    text-align: center;
 }
 
 ul.list-group {
@@ -54,8 +59,8 @@ p.app-description {
 }
 
 .hovered {
-    -webkit-filter: drop-shadow(3px 3px 0 #00AFFF ) drop-shadow(-3px -3px 0 #00AFFF);
-    filter: drop-shadow(1px 1px 0 #00AFFF ) drop-shadow(-1px -1px 0 #00AFFF);
+    -webkit-filter: drop-shadow(3px 3px 0 #00AFFF) drop-shadow(-3px -3px 0 #00AFFF);
+    filter: drop-shadow(1px 1px 0 #00AFFF) drop-shadow(-1px -1px 0 #00AFFF);
 }
 
 #landing {
@@ -82,8 +87,8 @@ p.app-description {
     width: 33%;
 }
 
-.row{
-  /* padding-left: 67px; */
+.row {
+    /* padding-left: 67px; */
 }
 
 .selector {
