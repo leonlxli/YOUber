@@ -87,7 +87,6 @@ exports.getData = function(req, res) {
     }
     var datalist = []
     for (var area in data) {
-        console.log(area);
         var areaObj = {}
         var areaDat = data[area]['scaled data'];
         var power = areaDat['population scaled'] * uberRank['population weight'] +
@@ -101,7 +100,10 @@ exports.getData = function(req, res) {
             power += (data[area]['Hispanic Population'] / data[area]['population'] * 15);
         }
         if (req.query.uber == 'Uber SUV') {
-            power += (data[area]['Family Households With Children scaled'] / (data[area]['population']/3) * 15);
+            // console.log('family' + data[area]['Family Households With Children'])
+            // console.log(data[area]['population']);
+            power = power + (data[area]['Family Households With Children'] / (data[area]['population']/3) * 15);
+            console.log(power);
         }
         areaObj['power'] = power;
         areaObj['Area'] = area;
