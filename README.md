@@ -17,12 +17,11 @@ Users are prevented from making errors and being confused because our app was ma
 
 ####Design justifications:
 - Bootstrap:
-Built in one page website design - landing page that allows scrolling, first section introduces and explains the app to our users and the bottom section gives them the information they want to see in a compacted area
-Basic css already implemented so we just had to tweak a bit of the colors to match our liking
+Built in one page website design - landing page that allows scrolling, first section introduces and explains the app to our users and the bottom section gives them the information they want to see in a compacted area.
+Basic css already implemented so we just had to tweak a bit of the colors to match our liking.
+We felt that by using bootstrap, we could keep our application consistent throughout.
 - Google maps API:
-Google Maps is widely used, so it is likely to be familiar to most users
-Presents the information to users visually in an intuitive way, since Uber drivers are probably familiar with maps
-Able to implement colors directly on the map to help users visualize the data
+Google Maps is widely used, so it is likely to be familiar to most users. Furthermore, in case we needed help, Google maps would also have a lot of support online. Presents the information to users visually in an intuitive way, since Uber drivers are probably familiar with maps. This also allows us to implement colors directly on the map to help users visualize the data
 - jQuery:
 For familiarity and ease with implementing how things are displayed and responsive. For example, we implemented the highlighting of buttons and appended rankings with jQuery. The primary use/purpose of d3 is to create charts and graphs rather to build a web app. For the sake of readability and helping people differentiate between the various APIs we were using, we decided to only use d3 for creating the graphs and http requests and Jquery for site manipulation.
 
