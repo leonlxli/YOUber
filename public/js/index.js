@@ -77,11 +77,11 @@ $('.uberType').mouseenter(function() {
 function selectUber(uber) {
 
     infoWindow.close();
-    map.data.forEach(function(region) {
+    /*map.data.forEach(function(region) {
         map.data.overrideStyle(region, {
             fillColor: 'black'
         });
-    });
+    });*/
 
     $('#uberTypeSelected').text("for " + uber + ":");
 
